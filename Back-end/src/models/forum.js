@@ -8,57 +8,22 @@ module.exports = (sequelize, DataTypes) => {
       sujet: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: {
-          msg: 'Le nom est déjà pris.'
-        },
-        validate: {
-          notEmpty: { msg: 'Le nom ne peut pas etre vide.'},
-          notNull: { msg: 'Le nom est une propriété requise.'}
-        }
       },
       contenu: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: {
-          msg: 'Le nom est déjà pris.'
-        },
-        validate: {
-          notEmpty: { msg: 'Le nom ne peut pas etre vide.'},
-          notNull: { msg: 'Le nom est une propriété requise.'}
-        }
       },
       nom_utilisateur: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: {
-          msg: 'Le nom est déjà pris.'
-        },
-        validate: {
-          notEmpty: { msg: 'Le nom ne peut pas etre vide.'},
-          notNull: { msg: 'Le nom est une propriété requise.'}
-        }
       },
       id_discussion: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: {
-          msg: 'Le nom est déjà pris.'
-        },
-        validate: {
-          notEmpty: { msg: 'Le nom ne peut pas etre vide.'},
-          notNull: { msg: 'Le nom est une propriété requise.'}
-        }
       },
       likes: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: {
-          msg: 'Le nom est déjà pris.'
-        },
-        validate: {
-          notEmpty: { msg: 'Le nom ne peut pas etre vide.'},
-          notNull: { msg: 'Le nom est une propriété requise.'}
-        }
       },
       avatar: {
         type: DataTypes.STRING,

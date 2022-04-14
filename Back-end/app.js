@@ -32,6 +32,10 @@ require('./src/routes/updateForum')(app)
 require('./src/routes/deleteForum')(app)
 require('./src/routes/login')(app)
 require('./src/routes/signup')(app)
+require('./src/routes/deleteCompte')(app)
+require('./src/routes/avatars')(app)
+require('./src/routes/findAllUsersForum')(app)
+require('./src/routes/findUsersForumByPk')(app)
 
 
 // On ajoute la gestion des erreurs 404
@@ -51,6 +55,13 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
     next()
   })
+
+
+  const path= require('path')
+
+  app.use('./src/avatars', express.static(path.join(__dirname, 'avatars')))
+
+
 
 // Serveur
 app.listen(8880, () => console.log('Serveur lancer sur le port 8880'))

@@ -34,8 +34,6 @@ const initDb = () => {
     //     pseudo: 'pikachu',
     //     password: hash,
     //     email: 'steve.lheureux@yahoo.fr',
-    //     nom: 'Lheureux',
-    //     prenom: 'Steve',
     //     Avatar: 1
     //   })
     //   .then(user => console.log(user.toJSON()))

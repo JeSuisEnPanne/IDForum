@@ -21,22 +21,7 @@
           />
         </p>
 
-        <p class="texteGauche">
-          <label for="prenom">Prénom :</label><br />
-          <input
-            class="largeurChamp"
-            type="text"
-            name="prenom"
-            v-model="prenom"
-          />
-        </p>
-
-        <p class="texteGauche">
-          <label for="nom">Nom :</label><br />
-          <input class="largeurChamp" type="text" name="nom" v-model="nom" />
-        </p>
-
-        <p class="texteGauche">
+         <p class="texteGauche">
           <label for="email">Mail :</label><br />
           <input
             class="largeurChamp"
@@ -61,7 +46,7 @@
         </p>
       </form>
       <p>lala</p>
-      <p v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.name }}</p>
+      <p v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.contenu }}</p>
     </div>
   </div>
 </template>
@@ -74,14 +59,12 @@ import axios from "axios";
 
 export default {
 
-            name: 'InscritsIndex',
+            name: 'InscriptionForum',
 
 
              data() {
                 return {
                     nom_utilisateur: '',
-                    prenom: '',
-                    nom: '',
                     email: '',
                     mot_de_passe: '',
                     avatar: 1,
@@ -95,7 +78,11 @@ export default {
                 //Affiche tout les utilisateur
                 mounted() {
                     console.log('Steve');
-                    axios.get('http://localhost:8880/api/pokemons')
+                    axios.post('http://localhost:8880/api/signup', {
+                      email: this.email,
+                      password: this.mot_de_passe,
+                      pseudo: this.nom_utilisateur
+                    })
                         .then(response => (this.pokemons = response.data.data))
                     
 
