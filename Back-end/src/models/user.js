@@ -29,13 +29,10 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "L'adresse email ne peut pas etre vide."}
         }
       },
-      nom: {
+      avatar_id: {
         type: DataTypes.STRING,
       },
-      prenom: {
-        type: DataTypes.STRING,
-      },
-      avatar: {
+      isAdmin: {
         type: DataTypes.STRING,
       },
     })

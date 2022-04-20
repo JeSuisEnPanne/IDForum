@@ -12,8 +12,9 @@
       <button class="couleurButton">Publier un message</button>
 
   
-      <p v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.sujet }}</p>
-      
+      <p v-for="pokemon in pokemons.reverse().slice(0, 5)" :key="pokemon.id">{{ pokemon.sujet }}</p>
+      <button class="couleurButton">Message précedent</button>
+      <button class="couleurButton" @click="counter += 1">Messages suivant</button>
     </div>
   </div>
 </template>
@@ -38,6 +39,8 @@ export default {
                     show: false,
                     mesDonnees: '',
                     pokemons: [],
+                    counter: 5,
+                    pokemon: []
 
                 }
             },
@@ -54,20 +57,7 @@ export default {
 
             methods: {
 
-                // // submitComment() {
-
-                // //     axios.get('http://localhost:8880/api/pokemons')
-                //         .then(response => (console.log(response)))
-
-                // // },
-
-
-
-
-                valide(mail) {
-                    let ex = new RegExp()
-                    return ex.test(mail)
-                },
+               
 
                     },
 }

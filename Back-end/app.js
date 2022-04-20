@@ -33,16 +33,18 @@ require('./src/routes/deleteForum')(app)
 require('./src/routes/login')(app)
 require('./src/routes/signup')(app)
 require('./src/routes/deleteCompte')(app)
-require('./src/routes/avatars')(app)
+require('./src/routes/avatarsForum')(app)
 require('./src/routes/findAllUsersForum')(app)
 require('./src/routes/findUsersForumByPk')(app)
 
 
+
+
 // On ajoute la gestion des erreurs 404
-app.use(({res}) => {
-  const message = 'Imossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.'
-  res.status(404).json({message})
-})
+// app.use(({res}) => {
+//   const message = 'Imossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.'
+//   res.status(404).json({message})
+// })
 
 
 // CORS protections
@@ -57,9 +59,15 @@ app.use((req, res, next) => {
   })
 
 
-  const path= require('path')
+  const path = require('path')
 
-  app.use('./src/avatars', express.static(path.join(__dirname, 'avatars')))
+
+
+
+  app.use('/avatars', express.static(path.join(__dirname + '/avatars')))
+  app.use('src//avatars', express.static(path.join(__dirname + 'src//avatars')))
+
+
 
 
 

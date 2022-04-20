@@ -7,9 +7,9 @@ const { Avatar } = require('../db/sequelize')
 module.exports = (app) => {
   app.get('/api/avatars', (req, res) => {
     Avatar.findAll()
-      .then(avatars => {
+      .then(avatar => {
         const message = 'La liste des avatars a bien été récupérée.'
-        res.json({ message, data: avatars })
+        res.json({ message, data: avatar })
       })
       .catch(error => {
         const message = "La liste des avatars n'a pas pu etre récupérée. Réessayez dans quelques instants."

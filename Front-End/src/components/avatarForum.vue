@@ -1,90 +1,71 @@
 <template>
   <div id="app">
   
-<!-- q-page : composant page de Quasar avec marge intérieure -->
-  <q-page padding>
-    <ul>
-      <li v-for="avatar in avatars" :key="avatar.id">{{ avatar }}</li>
-    </ul>
-  </q-page>
+<div class="couleurFond">
+    <div v-for="avatar in avatars.reverse()" :key="avatar.id">
+            
+            <a href="#{{ item.id }}">
+                <img
+                    data-original="{{ avatar.avatar }}"
+                    v-bind:src="avatar.avatar"
+                    class="lazy" alt="">
+            </a>
+        </div>
 
-
-
+</div>
   </div>
 </template>
 
-
-
-
 <script>
+
 
 import axios from "axios";
 
 
 export default {
 
-            name: 'loginForum',
+            name: 'titreMessageForum',
 
 
              data() {
                 return {
-                    nom_utilisateur: '',
-                    email: '',
-                    mot_de_passe: '',
-                    show: false,
-                    avatars: ['image1', 'image2'],
-                    pokemons: [],
+                    avatars: [],
+                    avatar: []
 
                 }
             },
 
                 //Affiche tout les utilisateur
                 mounted() {
-                    console.log('Steve');
-                    axios.post('http://localhost:8880/api/login', {
-                      email: this.email,
-                      password: this.mot_de_passe,
-                    })
-                        .then(response => (this.pokemons = response.data.data))
                     
+                    axios.get('http://localhost:8880/api/avatars')
+                        .then(response => (this.avatars = response.data.data))
+                      
 
                     },
-
-                  
 
 
             methods: {
 
-                // // submitComment() {
-
-                // //     axios.get('http://localhost:8880/api/pokemons')
-                //         .then(response => (console.log(response)))
-
-                // // },
-
-
-
-
-                valide(mail) {
-                    let ex = new RegExp()
-                    return ex.test(mail)
-                },
+               
 
                     },
 }
 </script>
-       
-
 
 <style scoped>
 .couleurFond {
   background-image: url("images/yellow.png");
-  background-size: 80% auto;
-  width: 500px;
-  height: 500px;
+  background-size: 100% auto;
+  width: 200px;
   text-align: center;
   padding: 10px;
   border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap
+  
+  
 }
 
 .texteGauche {
@@ -95,4 +76,16 @@ export default {
 .largeurChamp {
   width: 95%;
 }
+
+.couleurButton {
+  /* background: red; */
+}
+
+.couleurh2 {
+  background-color: rgb(57, 139, 246);
+}
+.lazy {
+  width: 65px;
+}
+
 </style>

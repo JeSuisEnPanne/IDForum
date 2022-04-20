@@ -67,7 +67,8 @@ export default {
                     nom_utilisateur: null,
                     email: null,
                     mot_de_passe: null,
-                    errors: [],
+                    avatar_id: null,
+                    isAdmin: null,
                     pokemons: [],
 
                 }
@@ -85,7 +86,9 @@ export default {
                     axios.post('http://localhost:8880/api/signup', {
                       email: this.email,
                       password: this.mot_de_passe,
-                      pseudo: this.nom_utilisateur
+                      pseudo: this.nom_utilisateur,
+                      avatar_id: this.avatar_id,
+                      isAdmin: this.isAdmin
                     })
                         .then(response => (this.pokemons = response.data.data))
 
@@ -100,18 +103,17 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .couleurFond {
- background-image: url("images/yellow.png");
+  background-image: url("images/yellow.png");
   background-size: 100% auto;
-  width: 600px;
+  width: 200px;
   text-align: center;
   padding: 10px;
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 1px 1px 1px black;
   margin-bottom: 10px;
-  font-family: 'Raleway', sans-serif;
 }
 </style>
 

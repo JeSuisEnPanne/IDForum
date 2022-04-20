@@ -36,7 +36,6 @@
           <input type="submit" value="Envoyer" />
         </p>
       </form>
-      <p v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.contenu }}</p>
     </div>
   </div>
 </template>
@@ -62,35 +61,31 @@ export default {
                 }
             },
 
-                //Affiche tout les utilisateur
-                mounted() {
-                    console.log('Steve');
-                    axios.post('http://localhost:8880/api/login', {
-                      email: this.email,
-                      password: this.mot_de_passe,
-                    })
-                        .then(response => (this.pokemons = response.data.data))
-                    
-
-                    },
-
-                  
+                
 
 
             methods: {
 
-               checkForm: function () {
+               checkForm: function (e) {
                          
                     console.log('Steve');
                     axios.post('http://localhost:8880/api/login', {
                       email: this.email,
                       password: this.mot_de_passe,
                     })
-                        .then(response => (this.pokemons = response.data.data))
+                        .then(response => {
 
+                          sessionStorage.setItem('token', response.data.token)
+                          sessionStorage.setItem('id', response.data.data.id);
+                          
+                          console.log(response);
+                          this.pokemons = response.data.data
+                    })
+                       
                         
+
                     
-                    // e.preventDefault();
+                    e.preventDefault();
 
                     },
                       }
@@ -99,18 +94,17 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .couleurFond {
- background-image: url("images/yellow.png");
+  background-image: url("images/yellow.png");
   background-size: 100% auto;
-  width: 600px;
+  width: 200px;
   text-align: center;
   padding: 10px;
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 1px 1px 1px black;
   margin-bottom: 10px;
-  font-family: 'Raleway', sans-serif;
 }
 </style>
 <style scoped>

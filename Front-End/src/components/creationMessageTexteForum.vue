@@ -1,0 +1,141 @@
+<template>
+  <div id="app">
+
+<div class="imageFond">
+<div class="couleurFond">
+      <h2>Poster un message</h2>
+
+      <form id="idForum" @submit="checkForm" action="https://vuejs.org/" method="post">
+        <p class="texteGauche">
+
+          <label for="sujet">Titre :</label><br><br>
+
+          <input
+            id = "sujet"
+            type="text"
+            name="sujet"
+            v-model="sujet"
+          />
+        </p>
+
+          <label for="champContenue">Message :</label><br>
+
+         <p class="contenu">
+
+
+    <trumbowyg v-model="contenu" id="contenu" :config="config" class="form-control" name="contenu"></trumbowyg>
+
+
+        </p>
+
+        <p>
+          <input type="submit" value="Envoyer" class="Button" />
+        </p>
+      </form>
+      <p v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.contenu }}</p>
+    </div>
+
+
+
+
+
+
+</div>
+
+    </div>
+</template>
+
+
+<script>
+
+import axios from "axios";
+
+  // Import this component
+  import Trumbowyg from 'vue-trumbowyg';
+  
+  // Import editor css
+  import 'trumbowyg/dist/ui/trumbowyg.css';
+
+   
+  export default {    
+    data () {
+      return {
+        sujet: null,
+        contenu: null,
+        nom_utilisateur: null,
+        id_discussion: null,
+        likes: null,
+        avatar: null,
+        errors: [],
+        pokemons: [],
+        content: null,
+        config: {
+
+          
+          // Get options from 
+          // https://alex-d.github.io/Trumbowyg/documentation
+        }       
+      }
+    },
+    components: {
+      Trumbowyg
+    },
+
+    methods: {
+
+                  checkForm: function (e) {
+                         
+                    console.log('Steve');
+                    axios.post('http://localhost:8880/api/forums', {
+                      sujet: this.sujet,
+                      contenu: this.contenu,
+                      nom_utilisateur: "null",
+                      id_discussion: "null",
+                      likes: "null",
+                      avatar: "null"
+
+                      
+
+                    }, {
+                      headers: {
+                          'Content-Type': 'application/json',
+                          'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                  
+                          }
+                    } )
+
+                        
+                    
+                    e.preventDefault();
+
+                    },
+                      }
+
+
+  }
+
+</script>
+
+<style scoped>
+
+
+
+.couleurFond {
+  background-color: url("images/yellow.png");
+  background-size: 100% auto;
+  width: 60%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#sujet {
+  width: 80%;
+}
+
+p.contenu {
+  background-color: rgb(255, 255, 255);
+}
+
+
+
+</style>

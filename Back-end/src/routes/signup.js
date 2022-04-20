@@ -14,7 +14,8 @@ module.exports = (app) => {
             email: req.body.email,
             password: hash,
             pseudo: req.body.pseudo,
-            avatar: req.body.avatar
+            avatar_id: req.body.avatar_id,
+            isAdmin: req.body.isAdmin
         })
         
         user.save()
