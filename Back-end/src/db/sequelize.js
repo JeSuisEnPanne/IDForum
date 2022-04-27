@@ -2,9 +2,11 @@ const { Sequelize, DataTypes } = require('sequelize')
 const ForumModel = require('../models/forum')
 const forums = require('./mock-forum')
 const avatars = require('./mock-avatar')
+const discussions = require('./mock-discussion')
 const UserModel = require('../models/user')
 const AvatarModel = require('../models/avatar')
 const bcrypt = require('bcrypt')
+const DiscussionModel = require('../models/discussions')
   
 const sequelize = new Sequelize('pawak_projet7', 'root', '', {
   host: 'localhost',
@@ -18,7 +20,12 @@ const sequelize = new Sequelize('pawak_projet7', 'root', '', {
 const Forum = ForumModel(sequelize, DataTypes)
 const User = UserModel(sequelize, DataTypes)
 const Avatar = AvatarModel(sequelize, DataTypes)
+const Discussion = DiscussionModel(sequelize, DataTypes)
 
+Forum.hasMany(Discussion)
+Discussion.belongsTo(Forum, {
+  
+} )
 
 const initDb = () => {
   // return sequelize.sync({force: true}).then(_ => {
@@ -39,6 +46,14 @@ const initDb = () => {
   //     }).then(forum => console.log(forum.toJSON()))
   //   })
 
+  //     discussions.map(discussion => {
+  //     Discussion.create({
+  //        ...discussion
+
+  //     })
+      
+  //   })
+
 
   //   bcrypt.hash('pikachu', 10)
   //   .then(hash => {
@@ -55,8 +70,10 @@ const initDb = () => {
 
   //   console.log('La base de donnée a bien été initialisée !')
   // })
+
+
 }
   
 module.exports = { 
-  initDb, Forum, User, Avatar
+  initDb, Forum, User, Avatar, Discussion
 }

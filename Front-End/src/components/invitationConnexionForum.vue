@@ -3,8 +3,8 @@
     <div class="couleurFond">
         <p>Connexion pour poster des messages</p>
         <div>
-          <button class="creer">Créer un compte</button>
-          <button class="login">S'identifier</button>
+          <button class="creer"><a href="http://localhost:8080/creerUnCompteForum">Créer un compte</a></button>
+          <button class="login"><a href="http://localhost:8080/loginUnCompteForum">S'identifier</a></button>
         </div>
     </div>
   </div>

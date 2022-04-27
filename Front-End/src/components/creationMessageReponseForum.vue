@@ -3,16 +3,10 @@
 
 <div class="imageFond">
 <div class="couleurFond">
-      <h2>Poster un message</h2>
+      <h2>Poster une réponse</h2>
 
       <form id="idForum" @submit="checkForm" action="https://vuejs.org/" method="post">
-        <p class="texteGauche">
-
-          <label for="sujet">Titre :</label><br><br>
-
-          <input id = "sujet" type="text" name="sujet" v-model="sujet"/>
-        </p>
-
+       
           <label for="champContenue">Message :</label><br>
 
          <p class="contenu">
@@ -20,13 +14,14 @@
 
  <quill-editor ref="myTextEditor" id="contenu" v-model:content="contenu" contentType="html" name="contenu" :config="editorOption"></quill-editor>
 
+
         </p>
 
         <p>
           <input type="submit" value="Envoyer" class="Button" />
         </p>
       </form>
-      <!-- <p v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.contenu }}</p> -->
+      <p v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.contenu }}</p>
     </div>
 
 
@@ -47,7 +42,6 @@ import axios from "axios";
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import '@vueup/vue-quill/dist/vue-quill.bubble.css';
-
    
   export default {    
     data () {
@@ -61,14 +55,16 @@ import '@vueup/vue-quill/dist/vue-quill.bubble.css';
         errors: [],
         pokemons: [],
         content: null,
-        name: 'app',
-        editorOption: {}
+        config: {
+
           
+          // Get options from 
+          // https://alex-d.github.io/Trumbowyg/documentation
+        }       
       }
     },
     components: {
-      
-      QuillEditor
+   QuillEditor
     },
 
     methods: {
@@ -84,7 +80,7 @@ import '@vueup/vue-quill/dist/vue-quill.bubble.css';
                       likes: "null",
                       avatar: "null"
 
-                      // .then(response => (this.pokemons = response.data.data))
+                      
 
                     }, {
                       headers: {
@@ -113,8 +109,7 @@ import '@vueup/vue-quill/dist/vue-quill.bubble.css';
 .couleurFond {
   background-color: url("images/yellow.png");
   background-size: 100% auto;
-  width: 98%;
-  height: 100%;
+  width: 85%;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -126,7 +121,6 @@ import '@vueup/vue-quill/dist/vue-quill.bubble.css';
 p.contenu {
   background-color: rgb(255, 255, 255);
 }
-
 
 
 

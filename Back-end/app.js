@@ -36,6 +36,10 @@ require('./src/routes/deleteCompte')(app)
 require('./src/routes/avatarsForum')(app)
 require('./src/routes/findAllUsersForum')(app)
 require('./src/routes/findUsersForumByPk')(app)
+require('./src/routes/createReponseForum')(app)
+require('./src/routes/createReponseByPkForum')(app)
+require('./src/routes/createReponseAllForum')(app)
+
 
 
 

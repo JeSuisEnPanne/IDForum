@@ -2,7 +2,7 @@ const { User } = require('../db/sequelize')
 
   
 module.exports = (app) => {
-  app.delete('/api/signup/:id', (req, res) => {
+  app.delete('/api/compte/:id', (req, res) => {
     User.findByPk(req.params.id).then(user => {
       if (user == null) {
         const message = "Le user demandé n'existe pas. Réessayer avec un autre identifiant"

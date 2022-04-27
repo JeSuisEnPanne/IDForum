@@ -8,11 +8,16 @@
         </p> -->
 
     <div class="couleurFond">
-      <h2 class="couleurh2">Partajon autour d'un café</h2>
+      <h2 class="couleurh2">Messages du Forum Groupomania</h2>
       <button class="couleurButton">Publier un message</button>
 
   
-      <p v-for="pokemon in pokemons.reverse().slice(0, 5)" :key="pokemon.id">{{ pokemon.sujet }}</p>
+      <p v-for="forum in forums.reverse().slice(0, 50)" :key="forum.id">
+
+        <span class="titre"><a :href="`http://localhost:8880/api/forums/{id_messages}`">{{ forum.sujet }}</a>
+        
+        </span> <br> <span class="sousTitre"> Speudo : {{ forum.nom_utilisateur }} - Avatar {{ forum.avatar }} - créer le {{ forum.created }}</span></p>
+
       <button class="couleurButton">Message précedent</button>
       <button class="couleurButton" @click="counter += 1">Messages suivant</button>
     </div>
@@ -38,9 +43,11 @@ export default {
                     avatar: 1,
                     show: false,
                     mesDonnees: '',
-                    pokemons: [],
+                    forums: [],
                     counter: 5,
-                    pokemon: []
+                    forum: [],
+                    id_messages: Number
+                    
 
                 }
             },
@@ -49,17 +56,21 @@ export default {
                 mounted() {
                     console.log('Steve');
                     axios.get('http://localhost:8880/api/forums')
-                        .then(response => (this.pokemons = response.data.data))
+                        .then(response => (this.forums = response.data.data))
                     
 
-                    },
+
+                      },
+                       
+
+                    headers: {
+                          'Content-Type': 'application/json',
+                          'Authorization': sessionStorage.getItem('id_messages')
+                  
+                          }
 
 
-            methods: {
 
-               
-
-                    },
 }
 </script>
 
@@ -67,7 +78,7 @@ export default {
 .couleurFond {
   background-image: url("images/yellow.png");
   background-size: 100% auto;
-  width: 800px;
+  width: 100%;
   text-align: center;
   padding: 10px;
   border: 1px solid black;
@@ -87,6 +98,14 @@ export default {
 }
 
 .couleurh2 {
-  background-color: rgb(57, 139, 246);
+  background-color: rgb(255, 255, 255);
+  border: solid 1px black;
+}
+.sousTitre {
+  font-size: 12px;
+}
+.titre {
+  font-size: 18px;
+  font-weight: 600;
 }
 </style>

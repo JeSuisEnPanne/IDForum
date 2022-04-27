@@ -48,6 +48,8 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import '@vueup/vue-quill/dist/vue-quill.bubble.css';
 
+
+
    
   export default {    
     data () {
@@ -62,6 +64,7 @@ import '@vueup/vue-quill/dist/vue-quill.bubble.css';
         pokemons: [],
         content: null,
         name: 'app',
+        ForumId: null,
         editorOption: {}
           
       }
@@ -82,17 +85,20 @@ import '@vueup/vue-quill/dist/vue-quill.bubble.css';
                       nom_utilisateur: "null",
                       id_discussion: "null",
                       likes: "null",
-                      avatar: "null"
+                      avatar: "null",
+                      ForumId: this.ForumId
 
-                      // .then(response => (this.pokemons = response.data.data))
+                      // .then(response => (this.idForum = response.data.data))
 
-                    }, {
-                      headers: {
-                          'Content-Type': 'application/json',
-                          'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-                  
-                          }
-                    } )
+                    })
+                      .then(response => {
+
+                          
+                          sessionStorage.setItem('id_messages', response.data.data.id);
+                          
+                          console.log(response);
+                          this.message = response.data.data
+                    })
 
                         
                     
@@ -101,6 +107,7 @@ import '@vueup/vue-quill/dist/vue-quill.bubble.css';
                     },
                       }
 
+                        
 
   }
 
@@ -113,8 +120,7 @@ import '@vueup/vue-quill/dist/vue-quill.bubble.css';
 .couleurFond {
   background-color: url("images/yellow.png");
   background-size: 100% auto;
-  width: 98%;
-  height: 100%;
+  width: 60%;
   padding-left: 20px;
   padding-right: 20px;
 }

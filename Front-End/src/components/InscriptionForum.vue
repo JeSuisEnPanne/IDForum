@@ -80,7 +80,7 @@ export default {
 
             methods: {
 
-                  checkForm: function (e) {
+                  checkForm: function () {
                          
                     console.log('Steve');
                     axios.post('http://localhost:8880/api/signup', {
@@ -94,7 +94,7 @@ export default {
 
                         
                     
-                    e.preventDefault();
+                    this.$router.push('loginUnCompteForum') 
 
                     },
                       }

@@ -66,6 +66,8 @@ export default {
   background-image: url("images/yellow.png");
   background-size: 100% auto;
   width: 200px;
+  text-align: center;
+  padding: 10px;
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 1px 1px 1px black;

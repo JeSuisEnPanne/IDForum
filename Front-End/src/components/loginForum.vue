@@ -10,7 +10,7 @@
     <div class="couleurFond">
       <h2>Se Connecter</h2>
 
-      <form id="idForumLogin" @submit="checkForm" action="https://vuejs.org/" method="post">
+      <form id="idForumLogin" @submit="checkForm" action="http://localhost:8080" method="post">
 
          <p class="texteGauche">
           <label for="email">Mail :</label><br />
@@ -34,6 +34,7 @@
 
         <p>
           <input type="submit" value="Envoyer" />
+          <!-- <input type="submit" value="Envoyer" @click="goToHome()"/> -->
         </p>
       </form>
     </div>
@@ -56,7 +57,7 @@ export default {
 
                     email: null,
                     mot_de_passe: null,
-                    pokemons: [],
+                    forums: [],
 
                 }
             },
@@ -66,7 +67,7 @@ export default {
 
             methods: {
 
-               checkForm: function (e) {
+               checkForm: function () {
                          
                     console.log('Steve');
                     axios.post('http://localhost:8880/api/login', {
@@ -79,15 +80,23 @@ export default {
                           sessionStorage.setItem('id', response.data.data.id);
                           
                           console.log(response);
-                          this.pokemons = response.data.data
+                          this.forums = response.data.data
                     })
                        
                         
 
+                    this.$router.push('profilUtilisateursForum') 
                     
-                    e.preventDefault();
 
+                    // goToHome(){
+                    //     this.$router.push('profilUtilisateursForum'); 
+                    //   }
+                      
                     },
+
+
+
+
                       }
                     }
                   

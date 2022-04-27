@@ -1,12 +1,13 @@
-const { Forum } = require('../db/sequelize')
+
+    const { Discussion } = require('../db/sequelize')
 
 //Token
 // const auth = require('../auth/auth')
 // app.get('/api/forums', auth, (req, res) => {
   
 module.exports = (app) => {
-  app.get('/api/forums', (req, res) => {
-    Forum.findAll()
+  app.get('/api/discussions/', (req, res) => {
+    Discussion.findAll()
       .then(forums => {
         const message = 'La liste des méssages a bien été récupérée.'
         res.json({ message, data: forums })

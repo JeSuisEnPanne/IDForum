@@ -1,10 +1,10 @@
-const { Forum } = require('../db/sequelize')
+const { Discussion } = require('../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
 const auth = require('../auth/auth')
 
 module.exports = (app) => {
-  app.post('/api/forums', (req, res) => {
-    Forum.create(req.body)
+  app.post('/api/discussions/:id', (req, res) => {
+    Discussion.create(req.body)
       .then(forum => {
         const message = `Le pokémon ${req.body.name} a bien été crée.`
         res.json({ message, data: forum })
