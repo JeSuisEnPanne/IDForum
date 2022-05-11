@@ -4,7 +4,20 @@ module.exports = defineConfig({
 })
 
 
+const webpack = require('webpack')
+const jQueryPath = 'jquery/dist/jquery.js';
 
+module.exports = {
+  configureWebpack: {
+    plugins: [
+      new webpack.ProvidePlugin({      
+        jQuery: jQueryPath,
+        $: jQueryPath,
+        'window.jQuery': jQueryPath,
+      }),
+    ],
+  }
+}
 
 
 
@@ -20,7 +33,7 @@ module.exports = {
   '/api': {
   
   target: 'http://localhost:8880', //API The address of the server 
-  changeOrigin: true,
+  changeOrigin: false,
   }
   },
   headers: {

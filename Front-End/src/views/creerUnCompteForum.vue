@@ -1,7 +1,5 @@
 <template>
   
-  <h1>Bienvenue</h1>
-
   <logoForum></logoForum>
   <reseauSocialInterneForum></reseauSocialInterneForum>
   <invitationConnexionForum></invitationConnexionForum>
@@ -37,5 +35,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>

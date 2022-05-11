@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       pseudo: {
         type: DataTypes.STRING,
+        allowNull: false,
         unique: {
             msg: 'Le pseudo est déjà pris.'
         },
@@ -16,12 +17,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           notEmpty: { msg: 'Le mot de passe ne peut pas etre vide.'}
         }
       },
       email: {
         type: DataTypes.STRING,
+        allowNull: false,
         unique: {
             msg: "L'adresse email est déjà pris."
         },

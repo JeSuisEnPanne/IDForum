@@ -12,9 +12,10 @@ const bodyParser = require('body-parser')
 
            
 app.use(morgan('dev'))
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit:'100mb'}))
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(CORS())
+
 
 ///////////////////////////////////////////////////////////////////
 
@@ -44,15 +45,16 @@ require('./src/routes/createReponseAllForum')(app)
 
 
 
+
 // On ajoute la gestion des erreurs 404
 // app.use(({res}) => {
-//   const message = 'Imossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.'
-//   res.status(404).json({message})
-// })
-
-
-// CORS protections
-app.use((req, res, next) => {
+  //   const message = 'Imossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.'
+  //   res.status(404).json({message})
+  // })
+  
+  
+  // CORS protections
+  app.use((req, res, next) => {
     //accéder à notre API depuis n'importe quelle origine
     res.setHeader('Access-Control-Allow-Origin', '*')
     //ajouter les headers mentionnés aux requêtes envoyées vers notre API
@@ -62,24 +64,22 @@ app.use((req, res, next) => {
     next()
   })
 
-
+  
   const path = require('path')
-
-
-
-
+  
+  
+  
+  
   app.use('/avatars', express.static(path.join(__dirname + '/avatars')))
   app.use('src//avatars', express.static(path.join(__dirname + 'src//avatars')))
+  
+  
+  
+  
+  
+  // Serveur
+  app.listen(8880, () => console.log('Serveur lancer sur le port 8880'))
+  
 
-
-
-
-
-// Serveur
-app.listen(8880, () => console.log('Serveur lancer sur le port 8880'))
-
-
-
-
-
-
+  
+  

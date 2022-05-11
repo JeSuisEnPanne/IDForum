@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       contenu: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
+        allowNull: false,
+      },
+      data: {
+        type: DataTypes.BLOB("long"),
         allowNull: false,
       },
       nom_utilisateur: {

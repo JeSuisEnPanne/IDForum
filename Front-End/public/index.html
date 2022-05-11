@@ -7,6 +7,17 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
     
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5.10.3-128/plugins/image_list/plugin.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5.10.3-128/langs/fr.js"></script> -->
+    
+    
+    
+    
+  
+
+    
   </head>
   <body>
     <noscript>
@@ -14,7 +25,41 @@
     </noscript>
 
 
+    <!-- <script>
+tinymce.init({
+  
+  selector: 'textarea',  // change this value according to your HTML
+  language: "fr",
+  
+  file_picker_types: 'file image media',
+  image_caption: true,
+  //upload
+  automatic_uploads: false,
+  images_upload_url: 'http://localhost:8880/api/avatars',
+  images_reuse_filename: true,
+  file_picker_types: 'file image media',
+  
+  plugins: 'language, image, media, emoticons, link, preview, fullscreen, code, image_list',
+  toolbar: 'language, image, media, emoticons, link, preview, fullscreen, code, image_list',
+  // image_list: [
+    //   { title: 'My image 1', value: 'https://www.example.com/my1.gif' },
+    //   { title: 'My image 2', value: 'http://www.moxiecode.com/my2.gif' }
+    // ],
+    // content_langs: [
+      //   { title: 'French', code: 'fr' },
+      
+      // ],
+      
+  // v-model="contenu",
+  
 
+  
+});
+    </script> -->
+
+
+
+  
 
 
 <script>

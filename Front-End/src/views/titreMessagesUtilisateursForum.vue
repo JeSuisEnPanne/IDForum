@@ -1,6 +1,6 @@
 <template>
   
-  <h1>Bienvenue</h1>
+ 
 
   <div class="colonne">
 
@@ -53,13 +53,38 @@ export default {
 
 <style scoped>
 
+/* Mobile */
+@media screen and (max-width:640px){
+
+.colonne {
+  display: flex;
+  flex-direction: column;
+}
+.messages {
+  width: 100%;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+
+}
+
+/* Tablet */
+@media screen and (min-width:641px){
+
 .colonne {
   display: flex;
   flex-direction: row;
 }
 .messages {
-  width: 1000px;
+  width: 96%;
   margin-left: 10px;
 }
+
+}
+
+
+
+
 
 </style>

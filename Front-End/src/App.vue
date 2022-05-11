@@ -1,7 +1,7 @@
 <template>
 
     <nav>
-      <router-link to="/">Accueil</router-link>
+      <!-- <router-link to="/">Accueil</router-link>
       <router-link to="/creerUnCompteForum">Creer Un Compte</router-link>
       <router-link to="/loginUnCompteForum">Se Loguer</router-link>
       <router-link to="/profilUtilisateursForum">Profil Utilisateurs</router-link>
@@ -9,10 +9,10 @@
       <router-link to="/titreMessagesUtilisateursForum">Titre messages utilisateur</router-link>
       <router-link to="/reponseMessagesUtilisateursForum">Reponses messages utilisateur</router-link>
       <router-link to="/reponseTitreMessagesUtilisateursForum">Reponses repondre messages utilisateur</router-link>
-
+      <router-link to="/likeSystemForum">Like System</router-link>
       <router-link :to="{name: 'Product', params : {name: 'Skate'}}">Produit 1</router-link>
       <router-link :to="{name: 'Product', params : {name: 'Trotinette'}}">Produit 2</router-link>
-      <button @click="showProduct('Roller')">Produit 3</button>
+      <button @click="showProduct('Roller')">Produit 3</button> -->
     
     </nav>
     <router-view></router-view>
@@ -88,11 +88,29 @@ export default {
     // reponseMessagesTitreForum
     
   }
+
+  
 }
+
 
 
 </script>
 
 <style>
+
+@media screen and (max-width:640px){
+
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+body {
+  background-color: #2cb7f8;
+}
+
+}
+
+@media screen and (min-width:641px){
+body {
+  background-color: #2cf85c;
+}
+}
+
 </style>

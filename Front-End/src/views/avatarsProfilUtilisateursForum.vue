@@ -1,7 +1,5 @@
 <template>
   
-  <h1>Bienvenue</h1>
-
  <div class="colonne">
 
   <div>
@@ -49,13 +47,28 @@ export default {
 
 <style scoped>
 
+@media screen and (max-width:640px){
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+.colonne {
+  display: flex;
+  flex-direction: column;
+}
+
+
+}
+
+@media screen and (min-width:641px){
 .colonne {
   display: flex;
   flex-direction: row;
 }
 .messages {
-  width: 1000px;
+  width: 96%;
   margin-left: 10px;
 }
+}
+
+
 
 </style>

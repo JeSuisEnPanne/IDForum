@@ -1,5 +1,6 @@
 const { Forum } = require('../db/sequelize')
-  
+const auth = require('../auth/auth')
+
 module.exports = (app) => {
   app.delete('/api/forums/:id', (req, res) => {
     Forum.findByPk(req.params.id).then(forum => {

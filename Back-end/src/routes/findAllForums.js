@@ -1,4 +1,5 @@
 const { Forum } = require('../db/sequelize')
+const auth = require('../auth/auth')
 
 //Token
 // const auth = require('../auth/auth')

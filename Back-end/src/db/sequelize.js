@@ -8,7 +8,7 @@ const AvatarModel = require('../models/avatar')
 const bcrypt = require('bcrypt')
 const DiscussionModel = require('../models/discussions')
   
-const sequelize = new Sequelize('pawak_projet7', 'root', '', {
+const sequelize = new Sequelize('projet7', 'root', '', {
   host: 'localhost',
   dialect: 'mariadb',
   dialectOptions: {
@@ -22,10 +22,20 @@ const User = UserModel(sequelize, DataTypes)
 const Avatar = AvatarModel(sequelize, DataTypes)
 const Discussion = DiscussionModel(sequelize, DataTypes)
 
+
+//Id Forum
 Forum.hasMany(Discussion)
 Discussion.belongsTo(Forum, {
   
 } )
+
+//Id Avatar
+// Avatar.hasMany(User)
+// User.belongsTo(Avatar, {
+//   foreignKey: 'id_discussion', targetKey: 'id'
+// } )
+
+// UserId
 
 const initDb = () => {
   // return sequelize.sync({force: true}).then(_ => {
@@ -33,6 +43,7 @@ const initDb = () => {
   //     Forum.create({
   //       sujet: forum.sujet,
   //       contenu: forum.contenu,
+  //       data: forum.data,
   //       nom_utilisateur: forum.nom_utilisateur,
   //       id_discussion: forum.id_discussion,
   //       likes: forum.likes,
@@ -45,6 +56,7 @@ const initDb = () => {
   //       avatar: avatar.avatar
   //     }).then(forum => console.log(forum.toJSON()))
   //   })
+
 
   //     discussions.map(discussion => {
   //     Discussion.create({

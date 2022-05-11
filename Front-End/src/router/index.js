@@ -47,6 +47,7 @@ const routes = [
         path: '/profilUtilisateursForum',
         component: profilUtilisateursForum,
         meta: {
+            
             title: 'A propos'
         }
     },
@@ -71,7 +72,7 @@ const routes = [
 
     {
         name: 'reponseMessagesUtilisateursForum',
-        path: '/reponseMessagesUtilisateursForum',
+        path: '/reponseMessagesUtilisateursForum/:id',
         component: reponseMessagesUtilisateursForum,
         meta: {
             title: 'A propos'
@@ -80,7 +81,7 @@ const routes = [
 
     {
         name: 'reponseTitreMessagesUtilisateursForum',
-        path: '/reponseTitreMessagesUtilisateursForum',
+        path: '/reponseTitreMessagesUtilisateursForum/:id',
         component: reponseTitreMessagesUtilisateursForum,
         meta: {
             title: 'A propos'

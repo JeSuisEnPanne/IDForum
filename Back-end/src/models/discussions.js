@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true
       },
       contenu: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
         allowNull: false,
       },
     //   ForumId: {
