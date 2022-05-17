@@ -8,7 +8,7 @@ const auth = require("../auth/auth");
 // app.get('/api/forums', auth, (req, res) => {
 
 module.exports = (app) => {
-  app.get("/api/avatars", (req, res) => {
+  app.get("/api/avatars", auth, (req, res) => {
     Avatar.findAll()
       .then((avatar) => {
         const message = "La liste des avatars a bien été récupérée.";

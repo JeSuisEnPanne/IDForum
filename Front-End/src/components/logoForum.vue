@@ -1,145 +1,96 @@
 <template>
   <div id="app">
     <div class="couleurFond">
-        <img class="logo" src="./images/logo.png" alt="">
+      <img class="logo" src="./images/logo.png" alt="" />
     </div>
   </div>
 </template>
 
 <script>
-
-
-import axios from "axios";
-
-
 export default {
+  name: "titreMessageForum",
 
-            name: 'titreMessageForum',
+  data() {
+    return {};
+  },
 
+  mounted() {},
 
-             data() {
-                return {
-                    nom_utilisateur: '',
-                    email: '',
-                    mot_de_passe: '',
-                    avatar: 1,
-                    show: false,
-                    mesDonnees: '',
-                    pokemons: [],
-
-                }
-            },
-
-                //Affiche tout les utilisateur
-                mounted() {
-                    console.log('Steve');
-                    axios.get('http://localhost:8880/api/forums')
-                        .then(response => (this.pokemons = response.data.data))
-                    
-
-                    },
-
-
-            methods: {
-
-                // // submitComment() {
-
-                // //     axios.get('http://localhost:8880/api/pokemons')
-                //         .then(response => (console.log(response)))
-
-                // // },
-
-
-
-
-                valide(mail) {
-                    let ex = new RegExp()
-                    return ex.test(mail)
-                },
-
-                    },
-}
+  methods: {},
+};
 </script>
 
 <style scoped>
+@media screen and (max-width: 640px) {
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+  .couleurFond {
+    background-image: url("images/yellow.png");
+    background-size: 100% auto;
+    width: 95%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
+    margin-bottom: 10px;
+    background-color: #2cb7f8;
+  }
 
-@media screen and (max-width:640px){
+  .texteGauche {
+    text-align: left;
+    width: 100%;
+  }
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
-.couleurFond {
-  background-image: url("images/yellow.png");
-  background-size: 100% auto;
-  width: 95%;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px black;
-  margin-bottom: 10px;
-  background-color: #2cb7f8;
+  .largeurChamp {
+    width: 95%;
+  }
+
+  .couleurButton {
+    /* background: red; */
+  }
+
+  .couleurh2 {
+    background-color: rgb(57, 139, 246);
+  }
+
+  .logo {
+    width: 200px;
+  }
 }
 
-.texteGauche {
-  text-align: left;
-  width: 100%;
+@media screen and (min-width: 641px) {
+  .couleurFond {
+    background-image: url("images/yellow.png");
+    background-size: 100% auto;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
+    margin-bottom: 10px;
+    background-color: #2cb7f8;
+  }
+
+  .texteGauche {
+    text-align: left;
+    width: 100%;
+  }
+
+  .largeurChamp {
+    width: 95%;
+  }
+
+  .couleurButton {
+    /* background: red; */
+  }
+
+  .couleurh2 {
+    background-color: rgb(57, 139, 246);
+  }
+
+  .logo {
+    width: 200px;
+  }
 }
-
-.largeurChamp {
-  width: 95%;
-}
-
-.couleurButton {
-  /* background: red; */
-}
-
-.couleurh2 {
-  background-color: rgb(57, 139, 246);
-}
-
-.logo {
-  width: 200px;
-
-  
-}
-}
-
-@media screen and (min-width:641px){
-.couleurFond {
-  background-image: url("images/yellow.png");
-  background-size: 100% auto;
-  width: 200px;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px black;
-  margin-bottom: 10px;
-  background-color: #2cb7f8;
-}
-
-.texteGauche {
-  text-align: left;
-  width: 100%;
-}
-
-.largeurChamp {
-  width: 95%;
-}
-
-.couleurButton {
-  /* background: red; */
-}
-
-.couleurh2 {
-  background-color: rgb(57, 139, 246);
-}
-
-.logo {
-  width: 200px;
-
-  
-}
-}
-
-
 </style>

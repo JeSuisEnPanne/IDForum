@@ -6,11 +6,14 @@ const auth = require('../auth/auth')
 // app.get('/api/forums', auth, (req, res) => {
   
 module.exports = (app) => {
-  app.get('/api/forums', (req, res) => {
-    Forum.findAll()
-      .then(forums => {
-        const message = 'La liste des méssages a bien été récupérée.'
-        res.json({ message, data: forums })
+  app.get('/api/forums', auth, (req, res) => {
+    const limit = parseInt(req.query.limit) || 3
+    Forum.findAndCountAll({
+      limit: limit,
+    })
+      .then(({count, rows}) => {
+        const message = `Il y a ${count} méssages qui a bien été récupérée.`
+        res.json({ message, data: rows })
       })
       .catch(error => {
         const message = "La liste des méssages n'a pas pu etre récupérée. Réessayez dans quelques instants."

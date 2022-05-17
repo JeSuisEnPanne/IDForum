@@ -12,8 +12,9 @@
             type="text"
             name="nom_utilisateur"
             v-model="nom_utilisateur"
-            pattern="[A-Za-zéèêïç -]{2,30}"
-            title="Incorrect, peut contenir des lettres et: é è ê ï ç - espace"
+            pattern="[A-Z0-9a-zéèêïç -]{2,30}"
+            title="Incorrect, peut contenir 2 à 30 caractères des lettres chifres et: é è ê ï ç - espace"
+            required
           />
         </p>
 
@@ -27,6 +28,7 @@
             v-model="email"
             pattern="[a-z0-9._-]+@[a-z0-9.-]+.[a-z]{2,4}"
             title="Incorrect, peut contenir des lettres, chiffres et: - @ _ ."
+            required
           />
         </p>
 
@@ -38,8 +40,9 @@
             type="password"
             name="mot_de_passe"
             v-model="mot_de_passe"
-            pattern="[a-zA-Z0-9._-]{2,13}"
-            title="Incorrect, peut contenir des lettres, chiffres et: - _ ."
+            pattern="[a-zA-Z0-9]{5,13}"
+            title="Incorrect, peut contenir 5 à 13 caractères avec des lettres et chiffres uniquement : a-z A-Z 0-9 "
+            required
           />
         </p>
 
@@ -82,6 +85,11 @@ export default {
             avatar_id: this.avatar_id,
             isAdmin: this.isAdmin,
           })
+
+          .catch((error) => {
+            console.log(error.response.data.error.errors);
+          })
+
           .then((response) => (this.forums = response.data.data));
 
         this.$router.push("loginUnCompteForum");
@@ -92,69 +100,62 @@ export default {
 </script>
 
 <style scoped>
+@media screen and (max-width: 640px) {
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+  .couleurFond {
+    background-image: url("images/yellow.png");
+    background-size: 100% auto;
+    width: 95%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
+    margin-bottom: 10px;
+  }
 
-@media screen and (max-width:640px){
+  .texteGauche {
+    text-align: left;
+    width: 100%;
+  }
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
-.couleurFond {
-  background-image: url("images/yellow.png");
-  background-size: 100% auto;
-  width: 95%;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px black;
-  margin-bottom: 10px;
+  .largeurChamp {
+    width: 100%;
+  }
+  h2 {
+    font-size: 13px;
+  }
+  label {
+    font-size: 13px;
+  }
 }
 
-.texteGauche {
-  text-align: left;
-  width: 100%;
+@media screen and (min-width: 641px) {
+  .couleurFond {
+    background-image: url("images/yellow.png");
+    background-size: 100% auto;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
+    margin-bottom: 10px;
+  }
 
-}
+  .texteGauche {
+    text-align: left;
+    width: 100%;
+  }
 
-.largeurChamp {
-  width: 100%;
+  .largeurChamp {
+    width: 95%;
+  }
+  h2 {
+    font-size: 13px;
+  }
+  label {
+    font-size: 13px;
+  }
 }
-h2 {
-  font-size: 13px;
-}
-label {
-  font-size: 13px;
-}
-
-}
-
-@media screen and (min-width:641px){
-.couleurFond {
-  background-image: url("images/yellow.png");
-  background-size: 100% auto;
-  width: 200px;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px black;
-  margin-bottom: 10px;
-}
-
-.texteGauche {
-  text-align: left;
-  width: 100%;
-}
-
-.largeurChamp {
-  width: 95%;
-}
-h2 {
-  font-size: 13px;
-}
-label {
-  font-size: 13px;
-}
-}
-
-
-
 </style>

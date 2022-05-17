@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT('long'),
         allowNull: false,
       },
+      nom_utilisateur: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      
     //   ForumId: {
     //     type: DataTypes.INTEGER,
     //     allowNull: false,

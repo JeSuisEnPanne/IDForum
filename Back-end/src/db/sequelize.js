@@ -8,7 +8,9 @@ const AvatarModel = require('../models/avatar')
 const bcrypt = require('bcrypt')
 const DiscussionModel = require('../models/discussions')
   
-const sequelize = new Sequelize('projet7', 'root', '', {
+require('dotenv').config();
+
+const sequelize = new Sequelize('projet7', 'root', process.env.MOTDEPASSE, {
   host: 'localhost',
   dialect: 'mariadb',
   dialectOptions: {

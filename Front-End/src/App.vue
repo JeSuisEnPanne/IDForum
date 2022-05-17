@@ -1,7 +1,6 @@
 <template>
-
-    <nav>
-      <!-- <router-link to="/">Accueil</router-link>
+  <nav>
+    <!-- <router-link to="/">Accueil</router-link>
       <router-link to="/creerUnCompteForum">Creer Un Compte</router-link>
       <router-link to="/loginUnCompteForum">Se Loguer</router-link>
       <router-link to="/profilUtilisateursForum">Profil Utilisateurs</router-link>
@@ -13,11 +12,10 @@
       <router-link :to="{name: 'Product', params : {name: 'Skate'}}">Produit 1</router-link>
       <router-link :to="{name: 'Product', params : {name: 'Trotinette'}}">Produit 2</router-link>
       <button @click="showProduct('Roller')">Produit 3</button> -->
-    
-    </nav>
-    <router-view></router-view>
-    
-    <!-- <logoForum></logoForum>
+  </nav>
+  <router-view></router-view>
+
+  <!-- <logoForum></logoForum>
     <invitationConnexionForum></invitationConnexionForum>
     <reseauSocialInterneForum></reseauSocialInterneForum>
     <titreGrandForum></titreGrandForum>
@@ -30,8 +28,6 @@
     <creationMessageReponseForum></creationMessageReponseForum>
     <reponseMessagesTitreForum></reponseMessagesTitreForum>
     <reponseMessagesForum></reponseMessagesForum> -->
-
-
 </template>
 
 <script>
@@ -49,7 +45,6 @@
 // import reponseMessagesTitreForum from './components/reponseMessagesTitreForum.vue'
 // import reponseMessagesForum from './components/reponseMessagesForum.vue'
 
-
 // //
 // import { createApp } from 'vue'
 // import { QuillEditor } from '@vueup/vue-quill'
@@ -59,20 +54,16 @@
 // app.component('QuillEditor', QuillEditor)
 //
 
-
 export default {
-  name: 'App',
+  name: "App",
 
   methods: {
-    showProduct: function(name) {
-      this.$router.push({name : 'Product', params : { name: name }})
-    }
+    showProduct: function (name) {
+      this.$router.push({ name: "Product", params: { name: name } });
+    },
   },
 
-
   components: {
-
-
     // InscriptionForum,
     // loginForum,
     // loginModifForum,
@@ -86,31 +77,23 @@ export default {
     // creationMessageReponseForum,
     // reponseMessagesForum,
     // reponseMessagesTitreForum
-    
-  }
-
-  
-}
-
-
-
+  },
+};
 </script>
 
 <style>
-
-@media screen and (max-width:640px){
-
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
-body {
-  background-color: #2cb7f8;
+@media screen and (max-width: 640px) {
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+  body {
+    background-color: #2cb7f8;
+  }
 }
 
-}
+@media screen and (min-width: 641px) {
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
-@media screen and (min-width:641px){
-body {
-  background-color: #2cf85c;
+  body {
+    background-color: #2cb7f8;
+  }
 }
-}
-
 </style>

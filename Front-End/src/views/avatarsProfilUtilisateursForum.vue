@@ -1,74 +1,53 @@
 <template>
-  
- <div class="colonne">
-
-  <div>
+  <div class="colonne">
+    <div>
       <logoForum></logoForum>
       <reseauSocialInterneForum></reseauSocialInterneForum>
       <loginModifForum></loginModifForum>
       <avatarForum></avatarForum>
-  </div>
+    </div>
 
-  <div class="messages">
+    <div class="messages">
       <titreMessageForum></titreMessageForum>
+    </div>
   </div>
-</div>
-
 </template>
 
-
 <script>
-
-import logoForum from '../components/logoForum.vue'
-import reseauSocialInterneForum from '../components/reseauSocialInterneForum.vue'
-import loginModifForum from '../components/loginModifForum.vue'
-import avatarForum from '../components/avatarForum.vue'
-import titreMessageForum from '../components/titreMessageForum.vue'
-
+import logoForum from "../components/logoForum.vue";
+import reseauSocialInterneForum from "../components/reseauSocialInterneForum.vue";
+import loginModifForum from "../components/loginModifForum.vue";
+import avatarForum from "../components/avatarForum.vue";
+import titreMessageForum from "../components/titreMessageForum.vue";
 
 export default {
-
-
-
   components: {
-
     loginModifForum,
     avatarForum,
     reseauSocialInterneForum,
     logoForum,
     titreMessageForum,
-   
-
-  }
-
-
-}
+  },
+};
 </script>
 
 <style scoped>
-
-@media screen and (max-width:640px){
-
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
-.colonne {
-  display: flex;
-  flex-direction: column;
+@media screen and (max-width: 640px) {
+  @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+  .colonne {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-
+@media screen and (min-width: 641px) {
+  .colonne {
+    display: flex;
+    flex-direction: row;
+  }
+  .messages {
+    width: 96%;
+    margin-left: 10px;
+  }
 }
-
-@media screen and (min-width:641px){
-.colonne {
-  display: flex;
-  flex-direction: row;
-}
-.messages {
-  width: 96%;
-  margin-left: 10px;
-}
-}
-
-
-
 </style>

@@ -48,7 +48,10 @@ const routes = [
         component: profilUtilisateursForum,
         meta: {
             
-            title: 'A propos'
+            title: 'A propos',
+            reload: true,
+            requiresAuth: true,
+            
         }
     },
 
@@ -57,7 +60,8 @@ const routes = [
         path: '/avatarsProfilUtilisateursForum',
         component: avatarsProfilUtilisateursForum,
         meta: {
-            title: 'A propos'
+            title: 'A propos',
+            requiresAuth: true,
         }
     },
 
@@ -66,7 +70,8 @@ const routes = [
         path: '/titreMessagesUtilisateursForum',
         component: titreMessagesUtilisateursForum,
         meta: {
-            title: 'A propos'
+            title: 'A propos',
+            requiresAuth: true,
         }
     },
 
@@ -75,7 +80,8 @@ const routes = [
         path: '/reponseMessagesUtilisateursForum/:id',
         component: reponseMessagesUtilisateursForum,
         meta: {
-            title: 'A propos'
+            title: 'A propos',
+            requiresAuth: true,
         }
     },
 
@@ -84,7 +90,8 @@ const routes = [
         path: '/reponseTitreMessagesUtilisateursForum/:id',
         component: reponseTitreMessagesUtilisateursForum,
         meta: {
-            title: 'A propos'
+            title: 'A propos',
+            requiresAuth: true,
         }
     },
 

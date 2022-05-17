@@ -7,20 +7,26 @@
         <form
           id="idForum"
           @submit="checkForm"
-          action="http://localhost:8080/profilUtilisateursForum"
+          action="/profilUtilisateursForum"
           method="get"
         >
           <p class="texteGauche">
             <label for="sujet">Titre :</label><br /><br />
 
-            <input id="sujet" type="text" name="sujet" v-model="sujet" />
+            <input
+              id="sujet"
+              type="text"
+              name="sujet"
+              v-model="sujet"
+              pattern="[A-Z0-9a-zéèêïç._?!: ]{5,100}"
+              title="Incorrect, peut contenir 5 à 100 caractères des lettres, chiffres et: . _ - ? ! : é è ê ï ç = ( ) "
+              required
+            />
           </p>
 
           <label for="champContenue">Message :</label><br />
 
           <p class="contenu">
-
-
             <editor
               id="tinymce"
               v-model="contenu"
@@ -50,16 +56,16 @@
           </p>
 
           <div class="retour">
+            <button class="agrandirBouton">
+              <a class="retourLien" :href="`/profilUtilisateursForum`"
+                >Retour</a
+              >
+            </button>
+
             <p>
               <input type="submit" value="Envoyer" class="Button" />
             </p>
-
-            <button class="agrandirBouton">
-                <a class="retourLien" :href="`http://localhost:8080/profilUtilisateursForum`">Retour</a>
-            </button>
-         </div>
-
-
+          </div>
         </form>
       </div>
     </div>
@@ -90,6 +96,24 @@ export default {
     editor: Editor,
   },
 
+  mounted() {
+    axios
+      .get(
+        `/api/user/${sessionStorage.id}`,
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+          },
+        },
+        sessionStorage.getItem("id")
+      )
+
+      .then((response) => (this.user = response.data.data));
+    console.log(sessionStorage.id);
+  },
+
   methods: {
     checkForm: function () {
       console.log("Steve");
@@ -99,7 +123,7 @@ export default {
           sujet: this.sujet,
           contenu: this.contenu,
           data: "null",
-          nom_utilisateur: this.nom_utilisateur,
+          nom_utilisateur: this.user.pseudo,
           id_discussion: "null",
           likes: "null",
           avatar: "null",
@@ -113,79 +137,76 @@ export default {
           },
         }
       );
-     
-
- 
     },
   },
 };
 </script>
 
 <style scoped>
-
-
 /* Mobile */
-@media screen and (max-width:640px){
+@media screen and (max-width: 640px) {
+  .couleurFond {
+    background-image: url("images/yellow.png");
+    background-size: 100% auto;
+    width: 95%;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid black;
+  }
 
-.couleurFond {
-  background-image: url("images/yellow.png");
-  background-size: 100% auto;
-  width: 95%;
-  text-align: left;
-  padding: 10px;
-  border: 1px solid black;
-}
+  #sujet {
+    width: 80%;
+  }
 
-#sujet {
-  width: 80%;
-}
+  p.contenu {
+    background-color: rgb(255, 255, 255);
+  }
 
-p.contenu {
-  background-color: rgb(255, 255, 255);
-}
+  .retour {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.retour {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  
-}
-
+  a:link,
+  a:visited {
+    text-decoration: none;
+    color: black;
+  }
 }
 
 /* Tablet */
-@media screen and (min-width:641px){
+@media screen and (min-width: 641px) {
+  .retour {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.retour {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  
+  .couleurFond {
+    background-image: url("images/yellow.png");
+    background-size: 100% auto;
+    width: 96%;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+  }
+
+  #sujet {
+    width: 80%;
+  }
+
+  a:link,
+  a:visited {
+    text-decoration: none;
+    color: black;
+  }
+
+  p.contenu {
+    background-color: rgb(147, 13, 13);
+  }
 }
-
-.couleurFond {
-  background-image: url("images/yellow.png");
-  background-size: 100% auto;
-  width: 96%;
-  text-align: left;
-  padding: 10px;
-  border: 1px solid black;
-  margin-bottom: 10px;
-}
-
-#sujet {
-  width: 80%;
-}
-
-p.contenu {
-  background-color: rgb(147, 13, 13);
-}
-
-}
-
-
-
-
 </style>

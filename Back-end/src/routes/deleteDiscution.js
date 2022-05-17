@@ -1,16 +1,16 @@
-const { Forum } = require('../db/sequelize')
+const { Discussion } = require('../db/sequelize')
 const auth = require('../auth/auth')
 
 module.exports = (app) => {
-  app.delete('/api/forums/:id', auth, (req, res) => {
-    Forum.findByPk(req.params.id).then(forum => {
+  app.delete('/api/discussions/:id', auth, (req, res) => {
+    Discussion.findByPk(req.params.id).then(forum => {
       if (forum == null) {
         const message = "Le forum demandé n'existe pas. Réessayer avec un autre identifiant"
         return res.status(404).json({message})
       }
 
       const forumDeleted = forum;
-      return Forum.destroy({
+      return Discussion.destroy({
         where: { id: forum.id }
       })
       .then(_ => {
