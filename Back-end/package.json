@@ -19,6 +19,8 @@
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mariadb": "^3.0.0",
+    "moment": "^2.29.3",
+    "moment-timezone": "^0.5.34",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.15",
     "path": "^0.12.7",

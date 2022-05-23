@@ -6,7 +6,7 @@
       <form
         id="idForumLogin"
         @submit="checkForm"
-        action="http://localhost:8080/loginUnCompteForum"
+        action="/loginUnCompteForum"
         method="post"
       >
         <p class="texteGauche">
@@ -36,9 +36,10 @@
             required
           />
         </p>
+          <!-- <p class="text-rouge" v-if="errors.message" v-text="errors.message"></p> -->
 
         <p>
-          <input type="submit" value="Envoyer" />
+          <input type="submit" value="Envoyer"/>
           <!-- <input type="submit" value="Envoyer" @click="goToHome()"/> -->
         </p>
       </form>
@@ -57,34 +58,45 @@ export default {
       email: null,
       mot_de_passe: null,
       forums: [],
+      forum: [],
+      errors: [],
+      error: [],
     };
   },
 
   methods: {
     checkForm: function () {
       console.log("Steve");
-
+        
       axios
-        .post("http://localhost:8880/api/login", {
+        .post("/api/login", {
           email: this.email,
           password: this.mot_de_passe,
         })
 
         // .catch(window.alert("Adresse Mail ou Mot de pass incorect"))
 
+
         .then((response) => {
-          sessionStorage.setItem("id", response.data.data.id);
+          let login = response.data.data.id
+          document.cookie = "id=" + encodeURIComponent(login) + ";httponly"
+          // sessionStorage.setItem("id", response.data.data.id);
           sessionStorage.setItem("token", response.data.token);
+
 
           console.log(response);
           this.forums = response.data.data;
         })
-        .catch((error) => {
-          alert(JSON.stringify(error.response.data));
+           .catch((error) => {
+            this.$router.push("/loginUnCompteForum");
+            alert(JSON.stringify(error.response.data));
+          console.log(error.response.data);
+             
         });
-
+      
+            this.$router.push("/profilUtilisateursForum");
       // Steve
-      this.$router.push("profilUtilisateursForum");
+      //  this.$router.push("loginUnCompteForum");
     },
   },
 };

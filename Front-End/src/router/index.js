@@ -14,6 +14,8 @@ import ProductForum from '@/views/ProductForum.vue'
 import NotFound from '@/views/NotFound.vue'
 
 
+
+
 const routes = [
     {
         name: 'Home',
@@ -38,7 +40,8 @@ const routes = [
         path: '/loginUnCompteForum',
         component: loginUnCompteForum,
         meta: {
-            title: 'A propos'
+            title: 'A propos',
+
         }
     },
 
@@ -49,8 +52,9 @@ const routes = [
         meta: {
             
             title: 'A propos',
-            reload: true,
+
             requiresAuth: true,
+          
             
         }
     },

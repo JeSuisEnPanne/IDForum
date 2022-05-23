@@ -5,7 +5,7 @@
       <button class="couleurButtonMessage">
         <a
           class="couleurLien"
-          href="http://localhost:8080/titreMessagesUtilisateursForum"
+          href="/titreMessagesUtilisateursForum"
           >Publier un message</a
         >
       </button>
@@ -17,21 +17,26 @@
 
         <span class="titre"
           ><a
-            :href="`http://localhost:8080/reponseMessagesUtilisateursForum/${forum.id}`"
+            :href="`/reponseMessagesUtilisateursForum/${forum.id}`"
             >{{ forum.sujet }}</a
           >
         </span>
         <br />
+
+        <span class="reponseStyle"> Réponses : {{ message.length }} </span><br>
         <span class="sousTitre">
-          Speudo : {{ forum.nom_utilisateur }} - Avatar {{ forum.avatar }}
-          <br />
-          créer le {{ forum.created }} -
+          
+          Speudo : {{ forum.nom_utilisateur }} - Avatar {{ forum.avatar }} -
+          <br> 
+          créer le {{ forum.createdDate }}
+
 
           <!-- //Supression messages -->
           <form
+
             id="checkFormSuprim"
             @submit="checkFormSuprim"
-            action="http://localhost:8080/profilUtilisateursForum"
+            action="/profilUtilisateursForum"
             method="get"
           >
             <p>
@@ -58,6 +63,14 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
+
+
+var date = moment().format('YYYY-MM-DD HH:mm:ss');
+console.log(date.toString());
+// moment().toISOString()
+
+
 
 export default {
   name: "titreMessageForum",
@@ -75,6 +88,8 @@ export default {
       counter: 1,
       current: 30,
       total: 0,
+      message: []
+     
     };
   },
 
@@ -87,24 +102,50 @@ export default {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         }
       )
 
-      .then((response) => (this.forums = response.data.data));
-    console.log(sessionStorage.id);
+      .then((response) => {
+        this.forums = response.data.data
+
+    console.log(response.data.data);
+
+        });
+
+
+        //message Total
+      axios
+      .get(
+        `/api/discussions/2`,
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
+          },
+        }
+      )
+
+      .then((response) => { 
+        this.message = response.data.data
+         console.log(response.data.data);
+        });
+   
+
+
   },
 
   methods: {
     checkFormSuprim: function () {
       axios.delete(
-        `http://localhost:8880/api/forums/`,
+        `/api/forums/`,
 
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         }
       );
@@ -186,6 +227,9 @@ export default {
     background-color: rgba(255, 255, 255, 0);
     margin-left: 5px;
   }
+    .reponseStyle {
+    font-weight: bold;
+  }
 }
 
 @media screen and (min-width: 641px) {
@@ -253,6 +297,9 @@ export default {
     flex-direction: row;
     justify-content: space-around;
     margin-top: 5%;
+  }
+  .reponseStyle {
+    font-weight: bold;
   }
 }
 </style>

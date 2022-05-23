@@ -4,10 +4,10 @@
       <p>Connexion pour poster des messages</p>
       <div class="alignement">
         <button class="creer">
-          <a href="http://localhost:8080/creerUnCompteForum">Créer un compte</a>
+          <a href="/creerUnCompteForum">Créer un compte</a>
         </button>
         <button class="login">
-          <a href="http://localhost:8080/loginUnCompteForum">S'identifier</a>
+          <a href="/loginUnCompteForum">S'identifier</a>
         </button>
       </div>
     </div>

@@ -15,7 +15,7 @@
         <button>
           <a
             class="sansLien"
-            href="http://localhost:8080/avatarsProfilUtilisateursForum"
+            href="/avatarsProfilUtilisateursForum"
             >Changer Avatar</a
           >
         </button>
@@ -23,7 +23,7 @@
         <form
           id="idForum"
           @submit="checkForm"
-          action="http://localhost:8080/"
+          action="/"
           method="get"
         >
           <input type="submit" value="Suprimmer Compte" class="Button" />
@@ -32,7 +32,7 @@
         <form
           id="idForum"
           @submit="checkDeconnexion"
-          action="http://localhost:8080/"
+          action="/"
           method="get"
         >
           <input type="submit" value="Déconnexion" class="Button" />
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+
+
 import axios from "axios";
 
 export default {
@@ -60,20 +62,71 @@ export default {
   // Affiche un utilisateur dans le profil
   mounted() {
     console.log(sessionStorage.getItem("token"));
+
+
+
+
     axios
       .get(
-        `http://localhost:8880/api/user/${sessionStorage.id}`,
+        `/api/user/${lectureCookie("id")}`,
 
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         }
       )
 
       .then((response) => (this.profil = response.data.data));
-    console.log(sessionStorage.id);
+    // console.log(this.$cookie.get('id'));
+
+
+
+// Cookie /////////////////////////////////////
+////////////////////////////////////////////////
+
+/* Définition de la fonction JavaScript de lecture d'un cookie */ 
+function lectureCookie(id) 
+{ 
+    /* Test de présence du cookie */ 
+    if (document.cookie.length == 0) 
+    { 
+        /* Valeur de retour null */ 
+        return null; 
+    } 
+    else 
+    { 
+        /* Mise en tableau tabElements des éléments du cookie */ 
+        /* NB : On se base sur le séparateur point-virgule */ 
+        var tabElements = document.cookie.split(";"); 
+        /* Recherche du = séparant le nom de l'élément 
+        de la valeur de l'élément pour le 1er élément (n° 0)*/ 
+        var positionEgal=tabElements[0].indexOf("=", 0); 
+        var nomElement=tabElements[0].substring(0, positionEgal);
+        var valeurElement=tabElements[0].substring(positionEgal+1);
+        if(nomElement == id)
+        {
+          return unescape(valeurElement);
+        }
+
+        return null;
+    }}
+
+    if (lectureCookie("id") == null)
+      {
+        // document.write("la la la")
+      }
+      else {
+        document.write(lectureCookie("id"))
+      }
+
+
+console.log(lectureCookie("id"));
+
+// FIN -----------------------
+
+
 
     // alert( sessionStorage.getItem('id') )
 
@@ -96,6 +149,14 @@ export default {
   ///// Supression compte
 
   methods: {
+
+    getCookie(){
+            // it gets the cookie called `username`
+          const username = this.$cookies.get("id");
+          console.log(username);
+        },
+
+
     checkForm: function (e) {
       if (
         window.confirm("Suprimer votre compte utilisateur : Oui ou Annuler ?")
@@ -103,12 +164,12 @@ export default {
         console.log("Steve");
 
         axios.delete(
-          `http://localhost:8880/api/compte/${sessionStorage.id}`,
+          `/api/compte/${sessionStorage.id}`,
 
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + sessionStorage.getItem("token"),
+              "Authorization": "Bearer " + sessionStorage.getItem("token"),
             },
           }
         );
@@ -128,7 +189,7 @@ export default {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: sessionStorage.clear(),
+              "Authorization": sessionStorage.clear(),
             },
           }
         );
@@ -136,6 +197,7 @@ export default {
 
       this.$router.go();
     },
+    
   },
 };
 </script>

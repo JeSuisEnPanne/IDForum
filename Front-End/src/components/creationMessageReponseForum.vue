@@ -40,7 +40,7 @@
             <button class="agrandirBouton">
               <a
                 class="retourLien"
-                :href="`http://localhost:8080/reponseMessagesUtilisateursForum/${this.$route.params.id}`"
+                :href="`/reponseMessagesUtilisateursForum/${this.$route.params.id}`"
                 >Retour</a
               >
             </button>
@@ -60,6 +60,13 @@ import axios from "axios";
 
 import Editor from "@tinymce/tinymce-vue";
 
+import moment from "moment";
+
+
+var date = moment().format('YYYY-MM-DD HH:mm:ss');
+console.log(date.toString());
+
+
 export default {
   data() {
     return {
@@ -73,6 +80,7 @@ export default {
       pokemons: [],
       content: null,
       foobar: null,
+      date: moment().format('YYYY-MM-DD HH:mm:ss'),
       config: {
         // Get options from
         // https://alex-d.github.io/Trumbowyg/documentation
@@ -96,7 +104,7 @@ export default {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         },
         sessionStorage.getItem("id")
@@ -111,7 +119,7 @@ export default {
       console.log("Steve");
 
       axios.post(
-        `http://localhost:8880/api/discussions/${this.$route.params.id}`,
+        `/api/discussions/${this.$route.params.id}`,
 
         {
           sujet: this.sujet,
@@ -121,12 +129,13 @@ export default {
           id_discussion: "null",
           likes: "null",
           avatar: "null",
+          createdDate: this.date.toString()
         },
 
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         }
       );

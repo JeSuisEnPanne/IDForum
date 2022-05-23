@@ -1,3 +1,5 @@
+const { roles } = require('../middlewares')
+
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('User', {
       id: {
@@ -38,5 +40,19 @@ module.exports = (sequelize, DataTypes) => {
       isAdmin: {
         type: DataTypes.STRING,
       },
+      createdDate: {
+        type: DataTypes.STRING,
+        
+      },
+      role:{
+        type: DataTypes.STRING,
+        enum:[roles.admin, roles.client],
+        defaultValue: roles.client
+      },
+    },{
+      timestamps: true,
+      createdAt: 'created',
+      updatedAt: false
     })
+    
   }

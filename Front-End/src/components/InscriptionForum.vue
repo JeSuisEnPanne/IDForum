@@ -58,6 +58,7 @@
 <script>
 import axios from "axios";
 
+
 export default {
   name: "InscriptionForum",
 
@@ -69,6 +70,7 @@ export default {
       avatar_id: null,
       isAdmin: null,
       forums: [],
+
     };
   },
 
@@ -78,7 +80,7 @@ export default {
     checkForm: function () {
       if (!window.alert("Création du compte reussie !")) {
         axios
-          .post("http://localhost:8880/api/signup", {
+          .post("/api/signup", {
             email: this.email,
             password: this.mot_de_passe,
             pseudo: this.nom_utilisateur,

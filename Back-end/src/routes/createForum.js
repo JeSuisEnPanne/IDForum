@@ -1,13 +1,19 @@
 const { Forum } = require("../db/sequelize");
 const { ValidationError, UniqueConstraintError } = require("sequelize");
-const auth = require("../auth/auth");
+const { auth } = require("../auth/auth");
+// const { ensureAdmin } = require("../auth/admin.route")
+const { roles } = require("../middlewares")
+
+
+
 
 module.exports = (app) => {
-  app.post("/api/forums", auth, (req, res) => {
-    console.log(req.body);
+  app.post("/api/forums", auth(roles.client), (req, res, next) => {
+        
+    console.log(req.body.role);
 
     Forum.create(req.body)
-      .then((forum) => {
+      .then((forum) => {POST
         const message = `Le pokémon ${req.body.name} a bien été crée.`;
         res.json({ message, data: forum });
       })
@@ -23,5 +29,16 @@ module.exports = (app) => {
         const message = `Le pokémon n'a pas pu être ajouté. Réessayez dans quelques instants.`;
         res.status(500).json({ message, data: error });
       });
+
+
+
+      
   });
 };
+
+
+
+
+
+
+

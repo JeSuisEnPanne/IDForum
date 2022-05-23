@@ -49,7 +49,9 @@ const initDb = () => {
   //       nom_utilisateur: forum.nom_utilisateur,
   //       id_discussion: forum.id_discussion,
   //       likes: forum.likes,
-  //       avatar: forum.avatar
+  //       avatar: forum.avatar,
+  //       createdDate: forum.createdDate,
+        
   //     }).then(forum => console.log(forum.toJSON()))
   //   })
 
@@ -76,6 +78,7 @@ const initDb = () => {
   //       password: hash,
   //       email: 'steve.lheureux@yahoo.fr',
   //       isAdmin:'admin',
+  //       // role: 'admin',
   //       Avatar: 1
   //     })
   //     .then(user => console.log(user.toJSON()))

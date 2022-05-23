@@ -77,6 +77,13 @@ import axios from "axios";
 
 import Editor from "@tinymce/tinymce-vue";
 
+import moment from "moment";
+
+
+var date = moment().format('YYYY-MM-DD HH:mm:ss');
+console.log(date.toString());
+
+
 export default {
   data() {
     return {
@@ -90,6 +97,8 @@ export default {
       name: "app",
       editorOption: {},
       Editor: "",
+      date: moment().format('YYYY-MM-DD HH:mm:ss')
+
     };
   },
   components: {
@@ -104,7 +113,7 @@ export default {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         },
         sessionStorage.getItem("id")
@@ -118,7 +127,7 @@ export default {
     checkForm: function () {
       console.log("Steve");
       axios.post(
-        "http://localhost:8880/api/forums",
+        "/api/forums",
         {
           sujet: this.sujet,
           contenu: this.contenu,
@@ -127,13 +136,15 @@ export default {
           id_discussion: "null",
           likes: "null",
           avatar: "null",
+          createdDate: this.date.toString()
+
 
           // .then(response => (this.pokemons = response.data.data))
         },
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         }
       );

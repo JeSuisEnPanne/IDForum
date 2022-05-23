@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Forum', {
       id: {
@@ -33,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       
+      },
+      createdDate: {
+        type: DataTypes.STRING,
+        
       },
   
     }, {

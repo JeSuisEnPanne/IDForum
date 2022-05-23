@@ -7,7 +7,7 @@
         :data-id="avatar.id"
       >
         <div v-on:click="avatarImage">
-          <a :href="`http://localhost:8880/api/forums/${avatar.id}`">
+          <a :href="`/api/forums/${avatar.id}`">
             <img
               data-original="{{ avatar.avatar }}"
               v-bind:src="avatar.avatar"
@@ -52,12 +52,12 @@ export default {
   mounted() {
     axios
       .get(
-        `http://localhost:8880/api/avatars`,
+        `/api/avatars`,
 
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         }
       )
@@ -67,7 +67,7 @@ export default {
   },
 
   avatarImage: function (e) {
-    axios.put("http://localhost:8880/api/forums/1", {
+    axios.put("/api/forums/1", {
       sujet: "null",
       contenu: "null",
       nom_utilisateur: "null",

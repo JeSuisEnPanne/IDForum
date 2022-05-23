@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      createdDate: {
+        type: DataTypes.STRING,
+        
+      },
       
     //   ForumId: {
     //     type: DataTypes.INTEGER,

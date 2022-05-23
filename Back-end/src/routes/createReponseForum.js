@@ -1,9 +1,10 @@
 const { Discussion } = require("../db/sequelize");
 const { ValidationError, UniqueConstraintError } = require("sequelize");
-const auth = require("../auth/auth");
+const { auth } = require("../auth/auth");
+const { roles } = require("../middlewares")
 
 module.exports = (app) => {
-  app.post("/api/discussions/:id", auth, (req, res) => {
+  app.post("/api/discussions/:id", auth(roles.client), (req, res) => {
     let discussion = req.body;
     discussion.ForumId = Number(req.params.id);
 

@@ -15,7 +15,7 @@ module.exports = (app) => {
         }
       bcrypt.compare(req.body.password, user.password).then(isPasswordValid => {
         if(!isPasswordValid) {
-          const message = `Le mot de passe est incorrect.`;
+          const message = "Le mot de passe est incorrect.";
           return res.status(401).json({ message })
         }
 

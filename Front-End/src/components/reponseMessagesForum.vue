@@ -49,14 +49,14 @@
             <!-- //* Fin Dates *// -->
             <div class="boutonsAlignement">
               <button class="couleurButton">
-                <a :href="`http://localhost:8080/profilUtilisateursForum`"
+                <a :href="`/profilUtilisateursForum`"
                   >Retour</a
                 >
               </button>
 
               <button>
                 <a
-                  :href="`http://localhost:8080/reponseTitreMessagesUtilisateursForum/${this.$route.params.id}`"
+                  :href="`/reponseTitreMessagesUtilisateursForum/${this.$route.params.id}`"
                   >Répondre</a
                 >
               </button>
@@ -77,7 +77,7 @@
         >
           <div class="backJaune">
             <div class="fondBlanc">
-              <p>{{ discussion.contenu }}</p>
+              <p> {{ discussion.contenu }}</p>
             </div>
 
             <form id="idForum2">
@@ -96,7 +96,7 @@
                 <!-- // Nom dates -->
 
                 <p>
-                  {{ discussion.created }}
+                  {{ discussion.createdDate }}
                 </p>
 
                 <form
@@ -172,12 +172,12 @@ export default {
 
     axios
       .get(
-        `http://localhost:8880/api/forums/${this.$route.params.id}`,
+        `/api/forums/${this.$route.params.id}`,
 
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         }
       )
@@ -186,12 +186,12 @@ export default {
 
     axios
       .get(
-        `http://localhost:8880/api/discussions/${this.$route.params.id}`,
+        `/api/discussions/${this.$route.params.id}`,
 
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         }
       )
@@ -207,12 +207,12 @@ export default {
 
     checkFormSup: function (e) {
       axios.delete(
-        `http://localhost:8880/api/discussions/`,
+        `/api/discussions/`,
 
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("token"),
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         }
       );

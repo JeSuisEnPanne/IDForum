@@ -7,7 +7,8 @@ const forums = [
      nom_utilisateur: "Stève",
      id_discussion: 1,
      likes: 23,
-     avatar: 1
+     avatar: 1,
+    
     },
    ];
      

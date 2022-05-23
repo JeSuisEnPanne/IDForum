@@ -1,8 +1,9 @@
 const { Discussion } = require('../db/sequelize')
-const auth = require('../auth/auth')
+const { auth } = require('../auth/auth')
+const { roles } = require("../middlewares")
 
 module.exports = (app) => {
-  app.delete('/api/discussions/:id', auth, (req, res) => {
+  app.delete('/api/discussions/:id', auth(roles.client), (req, res) => {
     Discussion.findByPk(req.params.id).then(forum => {
       if (forum == null) {
         const message = "Le forum demandé n'existe pas. Réessayer avec un autre identifiant"

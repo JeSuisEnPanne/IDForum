@@ -1,12 +1,12 @@
 const { Discussion } = require("../db/sequelize");
-const auth = require("../auth/auth");
-
+const { auth } = require("../auth/auth");
+const { roles } = require("../middlewares")
 //Token
 // const auth = require('../auth/auth')
 // app.get('/api/forums', auth, (req, res) => {
 
 module.exports = (app) => {
-  app.get("/api/discussions/", auth, (req, res) => {
+  app.get("/api/discussions/", auth(roles.client), (req, res) => {
     Discussion.findAll()
       .then((forums) => {
         const message = "La liste des méssages a bien été récupérée.";
