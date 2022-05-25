@@ -144,15 +144,15 @@ function lectureCookie(id)
         return null;
     }}
 
-    if (lectureCookie("id") !== null)
-      {
-        // document.write(lectureCookie("id"))
+    // if (lectureCookie("id") !== null)
+    //   {
+    //     // document.write(lectureCookie("id"))
         
        
-      }
-      else {
-        document.write("Id non valide!")
-      }
+    //   }
+    //   else {
+    //     document.write("Id non valide!")
+    //   }
 
 
 

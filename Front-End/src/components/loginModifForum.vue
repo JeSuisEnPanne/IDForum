@@ -66,13 +66,9 @@
 </template>
 
 <script>
-
-
 import axios from "axios";
-
 export default {
   name: "loginModifForum",
-
   data() {
     return {
       profils: [],
@@ -85,17 +81,11 @@ export default {
       png: ".png",
     };
   },
-
   // Affiche un utilisateur dans le profil
   mounted() {
-
-
-
-
     axios
       .get(
         `/api/avatars`,
-
         {
           headers: {
             "Content-Type": "application/json",
@@ -103,19 +93,13 @@ export default {
           },
         }
       )
-
       .then((response) => { this.avatars = response.data.data
       
     console.log(response.data.data[0].avatar);
       });
-
-
-
-
     axios
       .get(
         `/api/user/${lectureCookie("id")}`,
-
         {
           headers: {
             "Content-Type": "application/json",
@@ -123,21 +107,15 @@ export default {
           },
         }
       )
-
       .then((response) => {
         this.profil = response.data.data
         
     console.log(this.profil);
         });
-
-
-
         //////////////// TEST
-
  axios
       .get(
         `/api/user/${lectureCookie("id")}`,
-
         {
           headers: {
             "Content-Type": "application/json",
@@ -145,28 +123,17 @@ export default {
           },
         }
       )
-
       .then((response) => {
         this.profils = response.data.data.avatar_id
         
     console.log(this.profils);
         });
-
-
         //////////////FIN
-
-
-
     // alert( sessionStorage.getItem('id') )
-
     // window.location.href = "http://localhost:8080/profilUtilisateursForum/"
-
     // this.$router.push('/profilUtilisateursForum');
-
     // e.preventDefault();
-
     // console.log(sessionStorage.token);
-
     // window.setTimeout(function(){location.reload()},3000)
     //  clearTimeout();
     // this.$router.push(window.location.reload());
@@ -174,33 +141,21 @@ export default {
     // this.$router.go()
     // document.location.reload();
   },
-
   ///// Supression compte
-
-
-
-
   methods: {
-
    
-
-
     getCookie(){
             // it gets the cookie called `username`
           const username = this.$cookies.get("id");
           console.log(username);
         },
-
-
     checkForm: function (e) {
       if (
         window.confirm("Suprimer votre compte utilisateur : Oui ou Annuler ?")
       ) {
         console.log("Steve");
-
         axios.delete(
           `/api/compte/${lectureCookie("id")}`,
-
           {
             headers: {
               "Content-Type": "application/json",
@@ -209,20 +164,15 @@ export default {
           }
         );
       }
-
       e.preventDefault();
       this.$router.go();
     },
-
     /////////////////////////////////////
-
     checkDeconnexion: function () {
       if (window.confirm("Voulez-vous vous déconnecter : Oui ou Annuler ?")) {
         axios.get(
           `/api/compte/${lectureCookie("id")}`,
-
          
-
           {
             headers: {
               "Content-Type": "application/json",
@@ -231,19 +181,13 @@ export default {
           }
         );
       }
-
       this.$router.go();
     },
     
   },
-
-
-
 };
-
 // Cookie /////////////////////////////////////
 ////////////////////////////////////////////////
-
 /* Définition de la fonction JavaScript de lecture d'un cookie */ 
 function lectureCookie(id) 
 { 
@@ -267,23 +211,18 @@ function lectureCookie(id)
         {
           return unescape(valeurElement);
         }
-
         return null;
     }}
-
-    if (lectureCookie("id") !== null)
-      {
-        // document.write(lectureCookie("id"))
+    // if (lectureCookie("id") !== null)
+    //   {
+    //     // document.write(lectureCookie("id"))
         
        
-      }
-      else {
-        document.write("Id non valide!")
-      }
-
-
+    //   }
+    //   else {
+    //     document.write("Id non valide!")
+    //   }
 console.log(lectureCookie("id"));
-
 // FIN -----------------------
 </script>
 
@@ -298,50 +237,41 @@ console.log(lectureCookie("id"));
     border: 1px solid black;
     margin-bottom: 10px;
   }
-
   .texteGauche {
     text-align: left;
     width: 100%;
   }
-
   .largeurChamp {
     width: 95%;
   }
-
   .alignementBoutons {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     margin-top: 5%;
   }
-
   .profilAlignement {
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
-
   .profilAlignementTexte {
     display: flex;
     flex-direction: column;
   }
-
   .imagesAvatar {
     margin-top: -20px;
     width: 110px;
   }
-
   a:link,
   a:visited {
     text-decoration: none;
     color: black;
   }
-
   h2 {
     text-align: center;
   }
 }
-
 /* Tablet */
 @media screen and (min-width: 641px) {
   .couleurFond {
@@ -352,36 +282,30 @@ console.log(lectureCookie("id"));
     padding: 10px;
     border: 1px solid black;
   }
-
   a:link,
   a:visited {
     text-decoration: none;
     color: black;
   }
-
   .texteGauche {
     text-align: left;
     width: 100%;
   }
-
   .ButtonAvatar {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin-top: 5%;
   }
-
   .sansLien {
     text-decoration: none;
     color: black;
   }
-
   .Button {
     text-align: center;
     width: 100%;
     margin-top: 10px;
   }
-
   .alignementBoutons {
     display: flex;
     flex-direction: column;
@@ -392,7 +316,6 @@ console.log(lectureCookie("id"));
   .largeurChamp {
     width: 95%;
   }
-
   .imagesAvatar {
     margin-top: -20px;
     width: 130px;

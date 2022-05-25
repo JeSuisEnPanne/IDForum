@@ -23,7 +23,14 @@
         <form id="idForum" @submit="checkForm" action="#" method="post">
           <div class="info">
             
-            <img class="imagesAvatar" :src="'/avatars/' + `${forums.avatar}` + '.png'">
+<p
+            v-for="forum in forums"
+            :data-id="forum.id"
+            :key="forum.id"
+          >
+              <img class="imagesAvatar" :src="'/avatars/' + `${ forum.avatar }` + '.png'">
+        </p>
+
 
             <!-- // Nom d'utilisateur -->
 
