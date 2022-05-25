@@ -1,15 +1,16 @@
-const { Forum } = require('../db/sequelize')
+const { User } = require('../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
-const auth = require('../auth/auth')
+const { auth } = require('../auth/auth')
+const { roles } = require("../middlewares")
   
 module.exports = (app) => {
-  app.put('/api/forums/:id', (req, res) => {
+  app.put('/api/signup/:id', auth(roles.client), (req, res) => {
     const id = req.params.id
-    Forum.update(req.body, {
+    User.update(req.body, {
       where: { id: id }
     })
     .then(_ => {
-      return Forum.findByPk(id).then(forum => {
+      return User.findByPk(id).then(forum => {
         if (forum == null) {
           const message = "Le forum demandé n'existe pas. Réessayer avec un autre identifiant"
           return res.status(404).json({message})

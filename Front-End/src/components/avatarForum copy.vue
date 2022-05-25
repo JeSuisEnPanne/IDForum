@@ -1,32 +1,20 @@
 <template>
   <div id="app">
-
- <form
-          id="idForum"
-          @submit="avatarForm"
-          action="/profilUtilisateursForum"
-          method="get"
-        >
-
-
     <div class="couleurFond">
       <div
-        v-for="avatar in avatars"
+        v-for="avatar in avatars.reverse()"
         :key="avatar.id"
         :data-id="avatar.id"
-        
       >
-        <div @click="avatarForm">
-          <!-- <a :v-model="avatar.id" :href="`${avatar.id}`"> -->
+        <div v-on:click="avatarImage">
+          <a :href="`/api/forums/${avatar.id}`">
             <img
-              
-              data-original="${{avatar.id}}"
+              data-original="{{ avatar.avatar }}"
               v-bind:src="avatar.avatar"
               class="lazy"
               alt=""
-              
             />
-          <!-- </a> -->
+          </a>
         </div>
       </div>
 
@@ -36,8 +24,6 @@
         </button>
       </div>
     </div>
-    </form>
-
   </div>
 </template>
 
@@ -59,8 +45,6 @@ export default {
       errors: [],
       pokemons: [],
       content: null,
-      avatar_id: null,
-     
     };
   },
 
@@ -84,86 +68,20 @@ export default {
       });
   },
 
-  methods: {
+  avatarImage: function (e) {
+    axios.put("/api/forums/1", {
+      sujet: "null",
+      contenu: "null",
+      nom_utilisateur: "null",
+      id_discussion: this.id_discussion,
+      likes: "null",
+      avatar: "null",
+    });
 
-
-
-
-avatarForm: function () {
-     
-      axios.put(
-        `/api/signup/${lectureCookie("id")}`,
-        {
-          avatar_id: this.avatars.id
-
-
-          // .then(response => {
-            //   this.avatarUser = response.data
-          //   console.log("this.avatarUser");
-          //   })
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem("token"),
-          },
-        }
-      );
-
-            console.log(this.avatar.id);
-
-
-
-      // Cookie /////////////////////////////////////
-////////////////////////////////////////////////
-
-/* Définition de la fonction JavaScript de lecture d'un cookie */ 
-function lectureCookie(id) 
-{ 
-    /* Test de présence du cookie */ 
-    if (document.cookie.length == 0) 
-    { 
-        /* Valeur de retour null */ 
-        return null; 
-    } 
-    else 
-    { 
-        /* Mise en tableau tabElements des éléments du cookie */ 
-        /* NB : On se base sur le séparateur point-virgule */ 
-        var tabElements = document.cookie.split(";"); 
-        /* Recherche du = séparant le nom de l'élément 
-        de la valeur de l'élément pour le 1er élément (n° 0)*/ 
-        var positionEgal=tabElements[0].indexOf("=", 0); 
-        var nomElement=tabElements[0].substring(0, positionEgal);
-        var valeurElement=tabElements[0].substring(positionEgal+1);
-        if(nomElement == id)
-        {
-          return unescape(valeurElement);
-        }
-
-        return null;
-    }}
-
-    if (lectureCookie("id") !== null)
-      {
-        // document.write(lectureCookie("id"))
-        
-       
-      }
-      else {
-        document.write("Id non valide!")
-      }
-
-
-
-// FIN -----------------------
-
-
-
-    },
-    
-
+    e.preventDefault();
   },
+
+  methods: {},
 };
 </script>
 

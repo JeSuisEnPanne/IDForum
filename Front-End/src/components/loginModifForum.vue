@@ -4,7 +4,30 @@
       <h2>Profil</h2>
 
       <div class="profilAlignement">
-        <img class="imagesAvatar" src="https://i.ibb.co/MG8qZFg/6.png" />
+
+        <!-- <img class="imagesAvatar" src="https://i.ibb.co/MG8qZFg/6.png" /> -->
+       
+       
+       
+       <div>
+                    <!-- <img class="imagesAvatar" :src="`../assets/avatars/${profils}.png`"/> -->
+
+            
+<!-- <img class="imagesAvatar" :src="`../assets/avatars/${profils}.png`"/> -->
+
+
+         
+<img class="imagesAvatar" :src="'/avatars/' + `${profils}` + '.png'">
+
+        </div>
+
+
+ 
+      
+       
+       
+       
+       
         <div class="profilAlignementTexte">
           <p>Pseudo : {{ profil.pseudo }}</p>
           <p>Email : {{ profil.email }}</p>
@@ -55,13 +78,36 @@ export default {
       profils: [],
       profil: [],
       stop: null,
+      avatar: [],
+      avatars: [],
       authenticated: false,
+      image: "../assets/avatars/",
+      png: ".png",
     };
   },
 
   // Affiche un utilisateur dans le profil
   mounted() {
-    console.log(sessionStorage.getItem("token"));
+
+
+
+
+    axios
+      .get(
+        `/api/avatars`,
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
+          },
+        }
+      )
+
+      .then((response) => { this.avatars = response.data.data
+      
+    console.log(response.data.data[0].avatar);
+      });
 
 
 
@@ -78,10 +124,122 @@ export default {
         }
       )
 
-      .then((response) => (this.profil = response.data.data));
-    // console.log(this.$cookie.get('id'));
+      .then((response) => {
+        this.profil = response.data.data
+        
+    console.log(this.profil);
+        });
 
 
+
+        //////////////// TEST
+
+ axios
+      .get(
+        `/api/user/${lectureCookie("id")}`,
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
+          },
+        }
+      )
+
+      .then((response) => {
+        this.profils = response.data.data.avatar_id
+        
+    console.log(this.profils);
+        });
+
+
+        //////////////FIN
+
+
+
+    // alert( sessionStorage.getItem('id') )
+
+    // window.location.href = "http://localhost:8080/profilUtilisateursForum/"
+
+    // this.$router.push('/profilUtilisateursForum');
+
+    // e.preventDefault();
+
+    // console.log(sessionStorage.token);
+
+    // window.setTimeout(function(){location.reload()},3000)
+    //  clearTimeout();
+    // this.$router.push(window.location.reload());
+    // this.$router.push(window.location.reload());
+    // this.$router.go()
+    // document.location.reload();
+  },
+
+  ///// Supression compte
+
+
+
+
+  methods: {
+
+   
+
+
+    getCookie(){
+            // it gets the cookie called `username`
+          const username = this.$cookies.get("id");
+          console.log(username);
+        },
+
+
+    checkForm: function (e) {
+      if (
+        window.confirm("Suprimer votre compte utilisateur : Oui ou Annuler ?")
+      ) {
+        console.log("Steve");
+
+        axios.delete(
+          `/api/compte/${lectureCookie("id")}`,
+
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + sessionStorage.getItem("token"),
+            },
+          }
+        );
+      }
+
+      e.preventDefault();
+      this.$router.go();
+    },
+
+    /////////////////////////////////////
+
+    checkDeconnexion: function () {
+      if (window.confirm("Voulez-vous vous déconnecter : Oui ou Annuler ?")) {
+        axios.get(
+          `/api/compte/${lectureCookie("id")}`,
+
+         
+
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": sessionStorage.clear(),
+            },
+          }
+        );
+      }
+
+      this.$router.go();
+    },
+    
+  },
+
+
+
+};
 
 // Cookie /////////////////////////////////////
 ////////////////////////////////////////////////
@@ -113,93 +271,20 @@ function lectureCookie(id)
         return null;
     }}
 
-    if (lectureCookie("id") == null)
+    if (lectureCookie("id") !== null)
       {
-        // document.write("la la la")
+        // document.write(lectureCookie("id"))
+        
+       
       }
       else {
-        document.write(lectureCookie("id"))
+        document.write("Id non valide!")
       }
 
 
 console.log(lectureCookie("id"));
 
 // FIN -----------------------
-
-
-
-    // alert( sessionStorage.getItem('id') )
-
-    // window.location.href = "http://localhost:8080/profilUtilisateursForum/"
-
-    // this.$router.push('/profilUtilisateursForum');
-
-    // e.preventDefault();
-
-    // console.log(sessionStorage.token);
-
-    // window.setTimeout(function(){location.reload()},3000)
-    //  clearTimeout();
-    // this.$router.push(window.location.reload());
-    // this.$router.push(window.location.reload());
-    // this.$router.go()
-    // document.location.reload();
-  },
-
-  ///// Supression compte
-
-  methods: {
-
-    getCookie(){
-            // it gets the cookie called `username`
-          const username = this.$cookies.get("id");
-          console.log(username);
-        },
-
-
-    checkForm: function (e) {
-      if (
-        window.confirm("Suprimer votre compte utilisateur : Oui ou Annuler ?")
-      ) {
-        console.log("Steve");
-
-        axios.delete(
-          `/api/compte/${sessionStorage.id}`,
-
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": "Bearer " + sessionStorage.getItem("token"),
-            },
-          }
-        );
-      }
-
-      e.preventDefault();
-      this.$router.go();
-    },
-
-    /////////////////////////////////////
-
-    checkDeconnexion: function () {
-      if (window.confirm("Voulez-vous vous déconnecter : Oui ou Annuler ?")) {
-        axios.get(
-          `/api/compte/${sessionStorage.id}`,
-
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": sessionStorage.clear(),
-            },
-          }
-        );
-      }
-
-      this.$router.go();
-    },
-    
-  },
-};
 </script>
 
 <style scoped>

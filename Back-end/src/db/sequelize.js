@@ -79,7 +79,7 @@ const initDb = () => {
   //       email: 'steve.lheureux@yahoo.fr',
   //       isAdmin:'admin',
   //       // role: 'admin',
-  //       Avatar: 1
+  //       avatar_id: 1
   //     })
   //     .then(user => console.log(user.toJSON()))
   //   })

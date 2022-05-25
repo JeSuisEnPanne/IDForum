@@ -22,8 +22,7 @@
 
         <form id="idForum" @submit="checkForm" action="#" method="post">
           <div class="info">
-            
-            <img class="imagesAvatar" :src="'/avatars/' + `${forums.avatar}` + '.png'">
+            <img class="imagesAvatar" :src="'/avatars/' + `${avatarProfil}` + '.png'">
 
             <!-- // Nom d'utilisateur -->
 
@@ -43,9 +42,9 @@
               v-for="forum in forums"
               :data-id="forum.id"
               :key="forum.id"
-              v-html="forum.createdDate"
+              v-html="forum.created"
             ></p>
-            {{ forum.createdDate }}
+            {{ forum.created }}
 
             <!-- //* Fin Dates *// -->
             <div class="boutonsAlignement">

@@ -18,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         
       },
       
-    //   ForumId: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    //   },
+      avatar: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
 
       
 

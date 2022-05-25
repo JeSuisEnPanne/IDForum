@@ -35,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       avatar_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
+        defaultValue: 1
       },
       isAdmin: {
         type: DataTypes.STRING,

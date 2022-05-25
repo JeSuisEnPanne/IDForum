@@ -65,6 +65,9 @@ export default {
   },
 
   methods: {
+    
+    
+    
     checkForm: function () {
       console.log("Steve");
         
@@ -79,8 +82,18 @@ export default {
 
         .then((response) => {
           let login = response.data.data.id
-          document.cookie = "id=" + encodeURIComponent(login) + ";httponly"
-          // sessionStorage.setItem("id", response.data.data.id);
+          document.cookie = "id=" + encodeURIComponent(login)
+
+          // document.cookie = "name"+"="+111+"; path=/; SameSite=Strict; Secure";
+
+
+
+
+// document.cookie = "promo_shown=1"; "HttpOnly"
+
+
+
+
           sessionStorage.setItem("token", response.data.token);
 
 
@@ -88,16 +101,18 @@ export default {
           this.forums = response.data.data;
         })
            .catch((error) => {
-            this.$router.push("/loginUnCompteForum");
+             this.$router.push("/loginUnCompteForum");
             alert(JSON.stringify(error.response.data));
           console.log(error.response.data);
              
         });
-      
             this.$router.push("/profilUtilisateursForum");
+
+      
       // Steve
       //  this.$router.push("loginUnCompteForum");
     },
+  
   },
 };
 </script>

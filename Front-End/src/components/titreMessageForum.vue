@@ -26,7 +26,8 @@
         <span class="reponseStyle"> Réponses : {{ message.length }} </span><br>
         <span class="sousTitre">
           
-          Speudo : {{ forum.nom_utilisateur }} - Avatar {{ forum.avatar }} -
+          <img class="imagesAvatar" :src="'/avatars/' + `${forum.avatar}` + '.png'">
+          Speudo : {{ forum.nom_utilisateur }} -
           <br> 
           créer le {{ forum.createdDate }}
 
@@ -95,6 +96,78 @@ export default {
 
   //Affiche tout les utilisateur
   mounted() {
+
+    axios
+      .get(
+        `/api/user/${lectureCookie("id")}`,
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + sessionStorage.getItem("token"),
+          },
+        }
+      )
+
+      .then((response) => {
+        this.avatarProfil = response.data.data.avatar_id
+        
+    console.log(this.avatarProfil);
+        });
+
+
+// Cookie /////////////////////////////////////
+////////////////////////////////////////////////
+
+/* Définition de la fonction JavaScript de lecture d'un cookie */ 
+function lectureCookie(id) 
+{ 
+    /* Test de présence du cookie */ 
+    if (document.cookie.length == 0) 
+    { 
+        /* Valeur de retour null */ 
+        return null; 
+    } 
+    else 
+    { 
+        /* Mise en tableau tabElements des éléments du cookie */ 
+        /* NB : On se base sur le séparateur point-virgule */ 
+        var tabElements = document.cookie.split(";"); 
+        /* Recherche du = séparant le nom de l'élément 
+        de la valeur de l'élément pour le 1er élément (n° 0)*/ 
+        var positionEgal=tabElements[0].indexOf("=", 0); 
+        var nomElement=tabElements[0].substring(0, positionEgal);
+        var valeurElement=tabElements[0].substring(positionEgal+1);
+        if(nomElement == id)
+        {
+          return unescape(valeurElement);
+        }
+
+        return null;
+    }}
+
+    if (lectureCookie("id") !== null)
+      {
+        // document.write(lectureCookie("id"))
+        
+       
+      }
+      else {
+        document.write("Id non valide!")
+      }
+
+
+console.log(lectureCookie("id"));
+
+// FIN -----------------------
+
+
+
+
+
+
+
+
     axios
       .get(
         "/api/forums?limit=20",
@@ -118,7 +191,7 @@ export default {
         //message Total
       axios
       .get(
-        `/api/discussions/2`,
+        `/api/discussions/5`,
 
         {
           headers: {
@@ -214,7 +287,11 @@ export default {
     border: solid 1px black;
   }
   .sousTitre {
+    display: flex;
+    flex-direction: row;
     font-size: 12px;
+    justify-content: center;
+    align-items: center;
   }
   .titre {
     font-size: 18px;
@@ -229,6 +306,11 @@ export default {
   }
     .reponseStyle {
     font-weight: bold;
+  }
+  .imagesAvatar {
+    width: 9%;
+    height: 9%;
+    margin-right: 4px;
   }
 }
 
@@ -286,6 +368,7 @@ export default {
     flex-direction: row;
     font-size: 12px;
     justify-content: center;
+    align-items: center;
   }
   .titre {
     font-size: 18px;
@@ -300,6 +383,12 @@ export default {
   }
   .reponseStyle {
     font-weight: bold;
+  }
+  .imagesAvatar {
+    width: 7%;
+    height: 7%;
+    margin-right: 4px;
+    
   }
 }
 </style>

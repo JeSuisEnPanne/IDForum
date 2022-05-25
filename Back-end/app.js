@@ -48,6 +48,7 @@ require('./src/routes/deleteDiscution')(app)
 
 
 
+
 // On ajoute la gestion des erreurs 404
 // app.use(({res}) => {
   //   const message = 'Imossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.'
@@ -73,7 +74,7 @@ require('./src/routes/deleteDiscution')(app)
   
   
 
-  app.use('src//avatars', express.static(path.join(__dirname + 'src//avatars')))
+  app.use('src/avatars', express.static(path.join(__dirname + 'src/avatars')))
   
   
   require('dotenv').config();
