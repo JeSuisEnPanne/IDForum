@@ -1,3 +1,8 @@
+/////////////////////////////////////////////////////
+// Middlewares et routes
+// Affichage de tous les utilisateurs du forum
+////////////////////////////////////////////////////
+
 const { User } = require("../db/sequelize");
 const { auth } = require("../auth/auth");
 const { roles } = require("../middlewares");

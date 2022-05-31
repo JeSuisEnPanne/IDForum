@@ -1,3 +1,8 @@
+/////////////////////////////////////////////////////
+// Middlewares et routes
+// Systeme de login du forum
+////////////////////////////////////////////////////
+
 const { User } = require('../db/sequelize')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')

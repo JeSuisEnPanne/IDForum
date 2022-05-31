@@ -1,3 +1,8 @@
+/////////////////////////////////////////////////////
+// Middlewares et routes
+// Affichage de 1 message de discussions
+////////////////////////////////////////////////////
+
 const { Discussion } = require("../db/sequelize");
 const { auth } = require("../auth/auth");
 const { roles } = require("../middlewares");

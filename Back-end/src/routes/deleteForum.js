@@ -1,3 +1,8 @@
+/////////////////////////////////////////////////////
+// Middlewares et routes
+// Supression des messages du forums
+////////////////////////////////////////////////////
+
 const { Forum } = require("../db/sequelize");
 const { auth } = require("../auth/auth");
 const { roles } = require("../middlewares");

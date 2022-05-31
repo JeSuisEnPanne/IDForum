@@ -1,3 +1,8 @@
+/////////////////////////////////////////////////////
+// Middlewares et routes
+// Stokage dans la BDD des images d'Avatars
+////////////////////////////////////////////////////
+
 const { Avatar } = require("../db/sequelize");
 const jwt = require("jsonwebtoken");
 const privateKey = require("../auth/private_key");

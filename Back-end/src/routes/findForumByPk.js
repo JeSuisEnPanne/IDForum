@@ -1,3 +1,8 @@
+/////////////////////////////////////////////////////
+// Middlewares et routes
+// Affichage de 1 message du forum
+////////////////////////////////////////////////////
+
 const { Forum } = require("../db/sequelize");
 const { auth } = require("../auth/auth");
 const { roles } = require("../middlewares");

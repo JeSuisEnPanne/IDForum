@@ -1,3 +1,8 @@
+///////////////////////////////////////////////////////////////////
+// Gestion de la BDD avec Sequelize
+///////////////////////////////////////////////////////////////////
+
+
 const { Sequelize, DataTypes } = require('sequelize')
 const ForumModel = require('../models/forum')
 const forums = require('./mock-forum')
@@ -7,9 +12,11 @@ const UserModel = require('../models/user')
 const AvatarModel = require('../models/avatar')
 const bcrypt = require('bcrypt')
 const DiscussionModel = require('../models/discussions')
-  
+
+//fichier .env
 require('dotenv').config();
 
+//Connexion a la base de donner
 const sequelize = new Sequelize('projet7', 'root', process.env.MOTDEPASSE, {
   host: 'localhost',
   dialect: 'mariadb',
@@ -25,19 +32,13 @@ const Avatar = AvatarModel(sequelize, DataTypes)
 const Discussion = DiscussionModel(sequelize, DataTypes)
 
 
-//Id Forum
+//Relation 1 a plusieurs
 Forum.hasMany(Discussion)
 Discussion.belongsTo(Forum, {
   
-} )
+})
 
-//Id Avatar
-// Avatar.hasMany(User)
-// User.belongsTo(Avatar, {
-//   foreignKey: 'id_discussion', targetKey: 'id'
-// } )
 
-// UserId
 
 const initDb = () => {
   // return sequelize.sync({force: true}).then(_ => {
@@ -90,7 +91,8 @@ const initDb = () => {
 
 
 }
-  
+
+//Exportation des modules
 module.exports = { 
   initDb, Forum, User, Avatar, Discussion
 }

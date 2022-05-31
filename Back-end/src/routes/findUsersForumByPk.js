@@ -1,8 +1,11 @@
+/////////////////////////////////////////////////////
+// Middlewares et routes
+// Affichage de 1 utilisateur du forum
+////////////////////////////////////////////////////
+
 const { User } = require("../db/sequelize");
 const { auth } = require("../auth/auth");
 const { roles } = require("../middlewares");
-
-//Steve
 
 module.exports = (app) => {
   app.get("/api/user/:id", auth(roles.client), (req, res, next) => {

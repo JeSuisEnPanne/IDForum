@@ -1,3 +1,8 @@
+/////////////////////////////////////////////////////
+// Middlewares et routes
+// Systeme d'enregistrement du forum
+////////////////////////////////////////////////////
+
 const bcrypt = require("bcrypt");
 const { User } = require("../db/sequelize");
 const { auth } = require("../auth/auth");

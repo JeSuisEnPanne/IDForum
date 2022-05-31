@@ -1,3 +1,7 @@
+/////////////////////////////////////////////////////
+// Modele message de discussions pour la BDD
+////////////////////////////////////////////////////
+
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define("Discussion",{
       id: {

@@ -1,3 +1,7 @@
+/////////////////////////////////////////////////////
+// Systeme de sécuriter avec TOKEN et ROLES utilisateur
+////////////////////////////////////////////////////
+
 const jwt = require("jsonwebtoken");
 const privateKey = require("../auth/private_key");
 const { User } = require("../db/sequelize");

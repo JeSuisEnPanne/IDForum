@@ -1,3 +1,8 @@
+/////////////////////////////////////////////////////
+// Middlewares et routes
+// Mise a jour utilisateur
+////////////////////////////////////////////////////
+
 const { User } = require('../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
 const { auth } = require('../auth/auth')
