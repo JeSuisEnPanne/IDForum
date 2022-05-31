@@ -1,4 +1,7 @@
 <template>
+
+<!-- //Module SPA Organisation bloc
+     ////////////////////////////// -->
   <div class="colonne">
     <div>
       <logoForum></logoForum>
@@ -13,15 +16,21 @@
   </div>
 </template>
 
+
 <script>
+
+// Importation vers les components
+// ///////////////////////////////
 import logoForum from "../components/logoForum.vue";
 import reseauSocialInterneForum from "../components/reseauSocialInterneForum.vue";
 import loginModifForum from "../components/loginModifForum.vue";
-
 import reponseMessagesForum from "../components/reponseMessagesForum.vue";
 import creationMessageReponseForum from "../components/creationMessageReponseForum.vue";
 
 export default {
+
+  //Components actifs
+  ///////////////////
   components: {
     loginModifForum,
     reponseMessagesForum,
@@ -33,6 +42,10 @@ export default {
 </script>
 
 <style scoped>
+
+/* //////////////// media queries ///////////////
+////////////////// Portable ///////////////// */
+
 @media screen and (max-width: 640px) {
   @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
   .colonne {
@@ -43,6 +56,9 @@ export default {
     width: 100%;
   }
 }
+
+/* //////////////// media queries ///////////////
+////////////////// PC et Tablet ///////////////// */
 
 @media screen and (min-width: 641px) {
   .colonne {

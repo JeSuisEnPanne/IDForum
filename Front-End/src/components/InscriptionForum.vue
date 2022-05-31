@@ -1,9 +1,16 @@
 <template>
+
   <div id="app">
+
+    <!-- //Mise en page imageFond -->
     <div class="couleurFond">
+
       <h2>Créer un compte</h2>
 
-      <form id="idForum" @submit="checkForm" action="#" method="post">
+      <!-- //Formulaire avec bouton d'envoie "checkForm" -->
+      <form id="idForum" v-on:submit.prevent="checkForm">
+
+        <!-- //Champ Pseudo -->
         <p class="texteGauche">
           <label for="nom_utilisateur">Pseudo : </label>
           <input
@@ -16,9 +23,12 @@
             title="Incorrect, peut contenir 2 à 30 caractères des lettres chifres et: é è ê ï ç - espace"
             required
           />
+
         </p>
 
         <p class="texteGauche">
+
+          <!-- //Champ Mail -->
           <label for="email">Mail : </label>
           <input
             class="largeurChamp"
@@ -30,9 +40,12 @@
             title="Incorrect, peut contenir des lettres, chiffres et: - @ _ ."
             required
           />
+
         </p>
 
         <p class="texteGauche">
+
+           <!-- //Champ Mot de passe -->
           <label for="mot_de_passe">Mot de passe : </label>
           <input
             class="largeurChamp"
@@ -44,64 +57,94 @@
             title="Incorrect, peut contenir 5 à 13 caractères avec des lettres et chiffres uniquement : a-z A-Z 0-9 "
             required
           />
+
         </p>
+
+            <!-- //Message alerte champ Incorrect -->
+            <p class="text-rouge" v-text="errors.message"></p>
 
         <p>
+
+          <!-- //Bouton Envoyer Formulaire -->
           <input type="submit" value="Envoyer" />
+
         </p>
+
       </form>
-      <p v-for="forum in forums" :key="forum.id">{{ forum.contenu }}</p>
+
     </div>
   </div>
+
 </template>
 
+
 <script>
+
+//Appel a Axios pour l'API
 import axios from "axios";
 
 
 export default {
+
+  //Nom du components
   name: "InscriptionForum",
 
+  //Déclaration des variables
   data() {
     return {
       nom_utilisateur: null,
       email: null,
       mot_de_passe: null,
-      avatar_id: null,
+      errors: [],
+      error: [],
       isAdmin: null,
       forums: [],
+      forum: [],
+      response: [],
+
 
     };
   },
 
-  //Affiche tout les utilisateur
-
   methods: {
+
     checkForm: function () {
-      if (!window.alert("Création du compte reussie !")) {
-        axios
+      
+          //Appel a l'API Back-End pour creer un utilisateur
+          axios
           .post("/api/signup", {
             email: this.email,
             password: this.mot_de_passe,
             pseudo: this.nom_utilisateur,
-            avatar_id: this.avatar_id,
             isAdmin: this.isAdmin,
           })
 
-          .catch((error) => {
-            console.log(error.response.data.error.errors);
+          //Retourne une erreur de l'API
+          .catch(error => {
+            this.errors = error.response.data.error.errors[0]
           })
 
-          .then((response) => (this.forums = response.data.data));
+          // Retourne une promesse nommée forums
+          .then((response) => {
+            this.forums = response.data.data
 
-        this.$router.push("loginUnCompteForum");
-      }
-    },
+            // Si OK alors renvoie vers loginUnCompteForum
+            this.$router.push("loginUnCompteForum");
+            
+            });
+            
+    }
   },
 };
+
 </script>
 
+
 <style scoped>
+
+/* //////////////// media queries ///////////////
+////////////////// Portable ///////////////// */
+
 @media screen and (max-width: 640px) {
   @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
   .couleurFond {
@@ -131,6 +174,9 @@ export default {
     font-size: 13px;
   }
 }
+
+/* //////////////// media queries ///////////////
+////////////////// PC et Tablet ///////////////// */
 
 @media screen and (min-width: 641px) {
   .couleurFond {

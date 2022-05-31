@@ -1,9 +1,6 @@
 const { Discussion } = require("../db/sequelize");
 const { auth } = require("../auth/auth");
-const { roles } = require("../middlewares")
-//Token
-// const auth = require('../auth/auth')
-// app.get('/api/forums', auth, (req, res) => {
+const { roles } = require("../middlewares");
 
 module.exports = (app) => {
   app.get("/api/discussions/", auth(roles.client), (req, res) => {

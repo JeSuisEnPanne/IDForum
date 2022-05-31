@@ -1,5 +1,8 @@
 <template>
+
+  <!-- //Chemin incorect message -->
   <h1>Bonjour, Vous vous etes surement perdus !</h1>
+  
 </template>
 
 <script>

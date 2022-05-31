@@ -10,7 +10,7 @@ module.exports = (app) => {
     User.findOne({ where: { email: req.body.email } }).then(user => {
 
         if (!user) {
-            const message = `L'utilisateur demandé n'existe pas.`
+            const message = `L'adresse Mail n'existe pas.`
             return res.status(404).json({ message })
         }
       bcrypt.compare(req.body.password, user.password).then(isPasswordValid => {
@@ -23,8 +23,14 @@ module.exports = (app) => {
         const token = jwt.sign(
             { userId: user.id },
             privateKey,
-            { expiresIn: '24h' }
+            { expiresIn: '24h' },
+
         )
+
+        var randomNumber=Math.random().toString();
+        randomNumber=randomNumber.substring(2,randomNumber.length);
+        res.cookie('ids',randomNumber, { maxAge: 31536000000, httpOnly: true });
+        
 
         const message = `L'utilisateur a été connecté avec succès`;
           return res.json({ message, data: user, token })

@@ -1,5 +1,10 @@
 <template>
+
   <div class="colonne">
+
+<!-- //Module SPA Organisation bloc
+     ////////////////////////////// -->
+
     <div>
       <logoForum></logoForum>
       <reseauSocialInterneForum></reseauSocialInterneForum>
@@ -11,16 +16,26 @@
       <titreMessageForum></titreMessageForum>
     </div>
   </div>
+
 </template>
 
+
 <script>
+
+// Importation vers les components
+// ///////////////////////////////
 import logoForum from "../components/logoForum.vue";
 import reseauSocialInterneForum from "../components/reseauSocialInterneForum.vue";
 import loginModifForum from "../components/loginModifForum.vue";
 import avatarForum from "../components/avatarForum.vue";
 import titreMessageForum from "../components/titreMessageForum.vue";
 
+
+
 export default {
+
+  //Components actifs
+  ///////////////////
   components: {
     loginModifForum,
     avatarForum,
@@ -29,9 +44,16 @@ export default {
     titreMessageForum,
   },
 };
+
 </script>
 
+
+
 <style scoped>
+
+/* //////////////// media queries ///////////////
+////////////////// Portable ///////////////// */
+
 @media screen and (max-width: 640px) {
   @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
   .colonne {
@@ -39,6 +61,9 @@ export default {
     flex-direction: column;
   }
 }
+
+/* //////////////// media queries ///////////////
+////////////////// PC et Tablet ///////////////// */
 
 @media screen and (min-width: 641px) {
   .colonne {

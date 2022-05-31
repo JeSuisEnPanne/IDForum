@@ -8,66 +8,19 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     
 
+    <!-- Tiny - rich text editor -->
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5.10.3-128/plugins/image_list/plugin.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5.10.3-128/langs/fr.js"></script> -->
-    
     
     <!-- Tiny API Key -->
     <script src="https://cdn.tiny.cloud/1/ag04ikg0s1c9pkgjknwh1xmo3826s2xuw2jc2gwtk1yrp6up/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
     
   </head>
+  
   <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-
-
-    <!-- <script>
-tinymce.init({
-  
-  selector: 'textarea',  // change this value according to your HTML
-  language: "fr",
-  
-  file_picker_types: 'file image media',
-  image_caption: true,
-  //upload
-  automatic_uploads: false,
-  images_upload_url: 'http://localhost:8880/api/avatars',
-  images_reuse_filename: true,
-  file_picker_types: 'file image media',
-  
-  plugins: 'language, image, media, emoticons, link, preview, fullscreen, code, image_list',
-  toolbar: 'language, image, media, emoticons, link, preview, fullscreen, code, image_list',
-  // image_list: [
-    //   { title: 'My image 1', value: 'https://www.example.com/my1.gif' },
-    //   { title: 'My image 2', value: 'http://www.moxiecode.com/my2.gif' }
-    // ],
-    // content_langs: [
-      //   { title: 'French', code: 'fr' },
-      
-      // ],
-      
-  // v-model="contenu",
-  
-
-  
-});
-    </script> -->
-
-
-
-  
-
-
-<script>
-  // Initialize as global component
-  // yourAppInstance.component('Trumbowyg', VueTrumbowyg.default);
-</script>
-
 
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+    
+
   </body>
 </html>

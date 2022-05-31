@@ -1,26 +1,27 @@
 <template>
   <div id="app">
+
+    <!-- //Logo image -->
     <div class="couleurFond">
       <img class="logo" src="./images/logo.png" alt="" />
     </div>
+
   </div>
 </template>
 
 <script>
 export default {
+
+  //Nom du components
   name: "titreMessageForum",
-
-  data() {
-    return {};
-  },
-
-  mounted() {},
-
-  methods: {},
 };
 </script>
 
 <style scoped>
+
+/* //////////////// media queries ///////////////
+////////////////// Portable ///////////////// */
+
 @media screen and (max-width: 640px) {
   @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
   .couleurFond {
@@ -57,6 +58,9 @@ export default {
     width: 200px;
   }
 }
+
+/* //////////////// media queries ///////////////
+////////////////// PC et Tablet ///////////////// */
 
 @media screen and (min-width: 641px) {
   .couleurFond {

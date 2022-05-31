@@ -1,5 +1,8 @@
 <template>
+
   <div id="app">
+
+    <!-- //Bouton Menu -->
     <div class="couleurFond">
       <p>Connexion pour poster des messages</p>
       <div class="alignement">
@@ -11,27 +14,25 @@
         </button>
       </div>
     </div>
+
   </div>
+
 </template>
 
 <script>
-// import axios from "axios";
+
 
 export default {
+  //Nom du components
   name: "titreMessageForum",
 
-  data() {
-    return {};
-  },
-
-  //Affiche tout les utilisateur
-  mounted() {},
-
-  methods: {},
 };
 </script>
 
 <style scoped>
+
+/* //////////////// media queries ///////////////
+////////////////// Portable ///////////////// */
 @media screen and (max-width: 640px) {
   @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
   .couleurFond {
@@ -107,6 +108,9 @@ export default {
     justify-content: space-around;
   }
 }
+
+/* //////////////// media queries ///////////////
+////////////////// PC et Tablet ///////////////// */
 
 @media screen and (min-width: 641px) {
   .couleurFond {

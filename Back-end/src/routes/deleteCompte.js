@@ -1,6 +1,6 @@
 const { User } = require("../db/sequelize");
 const { auth } = require("../auth/auth");
-const { roles } = require("../middlewares")
+const { roles } = require("../middlewares");
 
 module.exports = (app) => {
   app.delete("/api/compte/:id", auth(roles.client), (req, res) => {

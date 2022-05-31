@@ -2,11 +2,7 @@ const { Avatar } = require("../db/sequelize");
 const jwt = require("jsonwebtoken");
 const privateKey = require("../auth/private_key");
 const { auth } = require("../auth/auth");
-const { roles } = require("../middlewares")
-
-//Token
-// const auth = require('../auth/auth')
-// app.get('/api/forums', auth, (req, res) => {
+const { roles } = require("../middlewares");
 
 module.exports = (app) => {
   app.get("/api/avatars", auth(roles.client), (req, res) => {

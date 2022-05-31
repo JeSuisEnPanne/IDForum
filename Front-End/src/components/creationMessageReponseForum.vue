@@ -1,11 +1,18 @@
 <template>
   <div id="app">
+
+    <!-- //Mise en page imageFond -->
     <div class="imageFond">
       <div class="couleurFond">
+
         <h2>Poster une réponse</h2>
 
+        <!-- //Formulaire avec bouton d'envoie "checkForm" -->
         <form id="idForum" @submit="checkForm" action="" method="get">
           <label for="champContenue">Message :</label><br />
+
+          <!-- //Tiny Rich Text Editeur
+          //////////////////////// -->
 
           <p class="contenu">
             <editor
@@ -36,6 +43,10 @@
             ></editor>
           </p>
 
+          <!-- //Tiny FIN /////////////
+          //////////////////////// -->
+
+          <!-- //Bouton retour -->
           <div class="retour">
             <button class="agrandirBouton">
               <a
@@ -45,30 +56,40 @@
               >
             </button>
 
+            <!-- //Bouton Envoyer Formulaire -->
             <p>
               <input type="submit" value="Envoyer" class="Button" />
             </p>
+
           </div>
         </form>
+
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
+
+//Appel a Axios pour l'API
 import axios from "axios";
 
+//Appel a Tiny pour rich text éditeur
 import Editor from "@tinymce/tinymce-vue";
 
+//Appel a moment pour les dates
 import moment from "moment";
 
-
-var date = moment().format('YYYY-MM-DD HH:mm:ss');
+// Format Date avec moment
+var date = moment().format("YYYY-MM-DD HH:mm:ss");
 console.log(date.toString());
 
-
 export default {
+
+  //Déclaration des variables
   data() {
+
     return {
       sujet: "",
       contenu: "",
@@ -77,94 +98,81 @@ export default {
       likes: null,
       avatar: null,
       errors: [],
-      pokemons: [],
       content: null,
       foobar: null,
-      date: moment().format('YYYY-MM-DD HH:mm:ss'),
-      config: {
-        // Get options from
-        // https://alex-d.github.io/Trumbowyg/documentation
-      },
+      date: moment().format("YYYY-MM-DD HH:mm:ss"),
+  
     };
   },
+
+
   components: {
+
+    //components pour Tiny - rich text éditeur
     editor: Editor,
+
   },
 
-  submit() {
-    //if you want to send any data into server before redirection then you can do it here
-    this.$router.Push("http://google.fr");
-  },
 
   mounted() {
+
+    //Appel a l'API Back-End recupere ID de l'utilisateur dans le middleware get user
     axios
       .get(
         `/api/user/${lectureCookie("id")}`,
 
+        // Récupère le token
         {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           },
         },
-        sessionStorage.getItem("id")
+       
       )
 
+      // Retourne une promesse nommée user
       .then((response) => (this.user = response.data.data));
-    console.log(sessionStorage.id);
+   
 
-     // Cookie /////////////////////////////////////
-////////////////////////////////////////////////
+      /////////////////// Cookie /////////////////////
+      ////////////////////////////////////////////////
 
-/* Définition de la fonction JavaScript de lecture d'un cookie */ 
-function lectureCookie(id) 
-{ 
-    /* Test de présence du cookie */ 
-    if (document.cookie.length == 0) 
-    { 
-        /* Valeur de retour null */ 
-        return null; 
-    } 
-    else 
-    { 
-        /* Mise en tableau tabElements des éléments du cookie */ 
-        /* NB : On se base sur le séparateur point-virgule */ 
-        var tabElements = document.cookie.split(";"); 
+    /* Définition de la fonction JavaScript de lecture d'un cookie */
+    function lectureCookie(id) {
+      /* Test de présence du cookie */
+      if (document.cookie.length == 0) {
+        /* Valeur de retour null */
+        return null;
+      } else {
+        /* Mise en tableau tabElements des éléments du cookie */
+        /* NB : On se base sur le séparateur point-virgule */
+        var tabElements = document.cookie.split(";");
         /* Recherche du = séparant le nom de l'élément 
-        de la valeur de l'élément pour le 1er élément (n° 0)*/ 
-        var positionEgal=tabElements[0].indexOf("=", 0); 
-        var nomElement=tabElements[0].substring(0, positionEgal);
-        var valeurElement=tabElements[0].substring(positionEgal+1);
-        if(nomElement == id)
-        {
+        de la valeur de l'élément pour le 1er élément (n° 0)*/
+        var positionEgal = tabElements[0].indexOf("=", 0);
+        var nomElement = tabElements[0].substring(0, positionEgal);
+        var valeurElement = tabElements[0].substring(positionEgal + 1);
+        if (nomElement == id) {
           return unescape(valeurElement);
         }
 
         return null;
-    }}
-
-    if (lectureCookie("id") !== null)
-      {
-        // document.write(lectureCookie("id"))
-        
-       
       }
-      else {
-        document.write("Id non valide!")
-      }
-
-
-console.log(lectureCookie("id"));
-
-// FIN -----------------------
-
+    }
+      ///////////////////// FIN ////////////////////////////
+      /////////////////////////////////////////////////////
 
   },
 
-  methods: {
-    checkForm: function (e) {
-      console.log("Steve");
 
+
+  methods: {
+
+    //Appel du formulaire checkForm
+    checkForm: function (e) {
+      
+      // API post pour poster des réponses au méssages
       axios.post(
         `/api/discussions/${this.$route.params.id}`,
 
@@ -176,25 +184,35 @@ console.log(lectureCookie("id"));
           id_discussion: "null",
           likes: "null",
           avatar: this.user.avatar_id,
-          createdDate: this.date.toString()
+          createdDate: this.date.toString(),
         },
 
+        // Récupère le token
         {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           },
         }
       );
 
+      //renvoie l'URL de la page en cours
       window.location.href = `/reponseMessagesUtilisateursForum/${this.$route.params.id}`;
+      
+      // Suppression du comportement par défaut
       e.preventDefault();
     },
   },
 };
 </script>
 
+
 <style scoped>
+
+/* //////////////// media queries ///////////////
+////////////////// Portable ///////////////// */
+
+
 @media screen and (max-width: 640px) {
   .couleurFond {
     background-image: url("images/yellow.png");
@@ -227,6 +245,9 @@ console.log(lectureCookie("id"));
     color: black;
   }
 }
+
+/* //////////////// media queries ///////////////
+////////////////// PC et Tablet ///////////////// */
 
 @media screen and (min-width: 641px) {
   .couleurFond {

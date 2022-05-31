@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('Avatar', {
+  return sequelize.define("Avatar", {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -8,11 +8,12 @@ module.exports = (sequelize, DataTypes) => {
       avatar: {
         type: DataTypes.STRING,
         allowNull: false,
-      },  
-    }, {
+      },
+    },
+    {
       timestamps: true,
-      createdAt: 'created',
-      updatedAt: false
-    })
-  }
-
+      createdAt: "created",
+      updatedAt: false,
+    }
+  );
+};

@@ -1,1 +1,1 @@
-module.exports = 'CUSTOM_PRIVATE_KEY'
+module.exports = '7pFx47z6J8XBt83Pe7YNxf'

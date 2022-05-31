@@ -1,18 +1,25 @@
 <template>
   <div id="app">
+
+    <!-- //Mise en page imageFond -->
     <div class="imageFond">
       <div class="couleurFond">
+
         <h2>Poster un message</h2>
 
+        <!-- //Formulaire avec bouton d'envoie "checkForm" -->
         <form
           id="idForum"
           @submit="checkForm"
           action="/profilUtilisateursForum"
           method="get"
         >
+
+          <!-- // Titre du message a poster -->
           <p class="texteGauche">
             <label for="sujet">Titre :</label><br /><br />
 
+            <!-- // Regex du champ sujet -->
             <input
               id="sujet"
               type="text"
@@ -25,6 +32,10 @@
           </p>
 
           <label for="champContenue">Message :</label><br />
+
+
+          <!-- //Tiny Rich Text Editeur
+          //////////////////////// -->
 
           <p class="contenu">
             <editor
@@ -55,6 +66,11 @@
             ></editor>
           </p>
 
+          <!-- //Tiny FIN /////////////
+          //////////////////////// -->
+
+
+          <!-- //Bouton retour -->
           <div class="retour">
             <button class="agrandirBouton">
               <a class="retourLien" :href="`/profilUtilisateursForum`"
@@ -62,30 +78,41 @@
               >
             </button>
 
+            <!-- //Bouton Envoyer Formulaire -->
             <p>
               <input type="submit" value="Envoyer" class="Button" />
             </p>
           </div>
         </form>
+
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
+
+//Appel a Axios pour l'API
 import axios from "axios";
 
+//Appel a Tiny pour rich text éditeur
 import Editor from "@tinymce/tinymce-vue";
 
+//Appel a moment pour les dates
 import moment from "moment";
 
-
+// Format Date avec moment
 var date = moment().format('YYYY-MM-DD HH:mm:ss');
 console.log(date.toString());
 
 
+
 export default {
+
+  //Déclaration des variables
   data() {
+
     return {
       sujet: "",
       contenu: "",
@@ -102,28 +129,36 @@ export default {
     };
   },
   components: {
+
+    //components pour Tiny - rich text éditeur
     editor: Editor,
+
   },
 
   mounted() {
+
+    //Appel a l'API Back-End pour récuperer ID de l'utilisateur
     axios
       .get(
         `/api/user/${lectureCookie("id")}`,
 
+        // Récupère le token
         {
           headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         },
-        sessionStorage.getItem("id")
+      
       )
 
+      // Retourne une promesse nommée user
       .then((response) => (this.user = response.data.data));
-    console.log(sessionStorage.id);
 
-    // Cookie /////////////////////////////////////
-////////////////////////////////////////////////
+
+
+      /////////////////// Cookie /////////////////////
+      ////////////////////////////////////////////////
 
 /* Définition de la fonction JavaScript de lecture d'un cookie */ 
 function lectureCookie(id) 
@@ -152,27 +187,18 @@ function lectureCookie(id)
         return null;
     }}
 
-    if (lectureCookie("id") !== null)
-      {
-        // document.write(lectureCookie("id"))
-        
-       
-      }
-      else {
-        document.write("Id non valide!")
-      }
-
-
-console.log(lectureCookie("id"));
-
-// FIN -----------------------
-
+      ///////////////////// FIN ////////////////////////////
+      /////////////////////////////////////////////////////
 
   },
 
+
   methods: {
+
+    //Appel du formulaire checkForm
     checkForm: function () {
-      console.log("Steve");
+
+      // API post pour poster des sujets avec méssages
       axios.post(
         "/api/forums",
         {
@@ -184,16 +210,17 @@ console.log(lectureCookie("id"));
           likes: "null",
           avatar: this.user.avatar_id,
           createdDate: this.date.toString()
-
-
-          // .then(response => (this.pokemons = response.data.data))
         },
+
+        // Récupère le token
         {
           headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + sessionStorage.getItem("token"),
           },
         }
+
+
       );
     },
   },
@@ -201,7 +228,10 @@ console.log(lectureCookie("id"));
 </script>
 
 <style scoped>
-/* Mobile */
+
+/* //////////////// media queries ///////////////
+////////////////// Portable ///////////////// */
+
 @media screen and (max-width: 640px) {
   .couleurFond {
     background-image: url("images/yellow.png");
@@ -234,7 +264,9 @@ console.log(lectureCookie("id"));
   }
 }
 
-/* Tablet */
+/* //////////////// media queries ///////////////
+////////////////// PC et Tablet ///////////////// */
+
 @media screen and (min-width: 641px) {
   .retour {
     display: flex;

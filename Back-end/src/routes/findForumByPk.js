@@ -1,13 +1,12 @@
-const { Forum } = require('../db/sequelize')
-const { auth } = require('../auth/auth')
-const { roles } = require("../middlewares")
+const { Forum } = require("../db/sequelize");
+const { auth } = require("../auth/auth");
+const { roles } = require("../middlewares");
 
 module.exports = (app) => {
-  app.get('/api/forums/:id', auth(roles.client), (req, res) => {
-    Forum.findByPk(req.params.id)
-      .then(forum => {
-        const message = 'Un méssage a bien été trouvé.'
-        res.json({ message, data: forum })
-      })
-  })
-}
+  app.get("/api/forums/:id", auth(roles.client), (req, res) => {
+    Forum.findByPk(req.params.id).then((forum) => {
+      const message = "Un méssage a bien été trouvé.";
+      res.json({ message, data: forum });
+    });
+  });
+};

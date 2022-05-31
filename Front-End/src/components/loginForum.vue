@@ -1,14 +1,16 @@
 <template>
+
   <div id="app">
+
+    <!-- //Mise en page imageFond -->
     <div class="couleurFond">
+
       <h2>Se Connecter</h2>
 
-      <form
-        id="idForumLogin"
-        @submit="checkForm"
-        action="/loginUnCompteForum"
-        method="post"
-      >
+      <!-- //Formulaire avec bouton d'envoie "checkForm" -->
+      <form id="idForumLogin" v-on:submit.prevent="checkForm">
+
+        <!-- //Champ Mail -->
         <p class="texteGauche">
           <label for="email">Mail :</label><br />
           <input
@@ -21,8 +23,10 @@
             title="Incorrect, peut contenir des lettres, chiffres et: - @ _ ."
             required
           />
+
         </p>
 
+        <!-- //Champ Mot de passe -->
         <p class="texteGauche">
           <label for="mot_de_passe">Mot de passe :</label><br />
           <input
@@ -36,23 +40,34 @@
             required
           />
         </p>
-          <!-- <p class="text-rouge" v-if="errors.message" v-text="errors.message"></p> -->
+
+         <!-- //Message alerte champ Incorrect -->
+        <p class="text-rouge" v-text="errors.message"></p>
 
         <p>
-          <input type="submit" value="Envoyer"/>
-          <!-- <input type="submit" value="Envoyer" @click="goToHome()"/> -->
+          <!-- //Bouton Envoyer Formulaire -->
+          <input type="submit" value="Envoyer" />
         </p>
+
       </form>
+
     </div>
   </div>
+
 </template>
 
+
 <script>
+
+//Appel a Axios pour l'API
 import axios from "axios";
 
 export default {
+
+  //Nom du components
   name: "loginForum",
 
+  //Déclaration des variables
   data() {
     return {
       email: null,
@@ -64,60 +79,53 @@ export default {
     };
   },
 
+
   methods: {
-    
-    
-    
+
+    //Appel au formullaire checkForm
     checkForm: function () {
-      console.log("Steve");
-        
+
+      //Appel a l'API Back-End pour se connecter au site
       axios
         .post("/api/login", {
           email: this.email,
           password: this.mot_de_passe,
         })
 
-        // .catch(window.alert("Adresse Mail ou Mot de pass incorect"))
-
 
         .then((response) => {
-          let login = response.data.data.id
-          document.cookie = "id=" + encodeURIComponent(login)
 
-          // document.cookie = "name"+"="+111+"; path=/; SameSite=Strict; Secure";
+          //Cookie
+          let login = response.data.data.id;
+          document.cookie = "id=" + encodeURIComponent(login);
+          //Fin Cookie
 
-
-
-
-// document.cookie = "promo_shown=1"; "HttpOnly"
-
-
-
-
+          //Initialise le Token
           sessionStorage.setItem("token", response.data.token);
 
-
-          console.log(response);
+          // Retourne une promesse nommée forums
           this.forums = response.data.data;
-        })
-           .catch((error) => {
-             this.$router.push("/loginUnCompteForum");
-            alert(JSON.stringify(error.response.data));
-          console.log(error.response.data);
-             
-        });
-            this.$router.push("/profilUtilisateursForum");
 
-      
-      // Steve
-      //  this.$router.push("loginUnCompteForum");
+          //Si ok alors envoie sur la page profilUtilisateursForum
+          this.$router.push("/profilUtilisateursForum");
+        })
+        .catch((error) => {
+          this.errors = error.response.data;
+        });
+
     },
-  
   },
 };
+
+
 </script>
 
+
 <style scoped>
+
+/* //////////////// media queries ///////////////
+////////////////// Portable ///////////////// */
+
 @media screen and (max-width: 640px) {
   @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
   .couleurFond {
@@ -152,6 +160,9 @@ export default {
     font-size: 12px;
   }
 }
+
+/* //////////////// media queries ///////////////
+////////////////// PC et Tablet ///////////////// */
 
 @media screen and (min-width: 641px) {
   .couleurFond {

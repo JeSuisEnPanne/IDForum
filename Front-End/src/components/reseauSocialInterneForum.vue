@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+
+    <!-- //Mise en page imageFond -->
     <div class="couleurFond">
       <p class="titreForumBleu">
         Réseau social interne
@@ -20,21 +22,18 @@
 
 <script>
 export default {
+
+  //Nom du components
   name: "titreMessageForum",
 
-  data() {
-    return {};
-  },
-
-  //Affiche tout les utilisateur
-  mounted() {},
-
-  methods: {},
 };
 </script>
 
+
 <style scoped>
-/* Mobile */
+
+/* //////////////// media queries ///////////////
+////////////////// Portable ///////////////// */
 @media screen and (max-width: 640px) {
   .couleurFond {
     background-image: url("images/yellow.png");
@@ -55,10 +54,6 @@ export default {
 
   .largeurChamp {
     width: 95%;
-  }
-
-  .couleurButton {
-    /* background: red; */
   }
 
   .couleurh2 {
@@ -103,7 +98,9 @@ export default {
   }
 }
 
-/* Tablet */
+/* //////////////// media queries ///////////////
+////////////////// PC et Tablet ///////////////// */
+
 @media screen and (min-width: 641px) {
   .couleurFond {
     background-image: url("images/yellow.png");

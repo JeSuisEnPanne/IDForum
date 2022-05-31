@@ -1,7 +1,11 @@
 <template>
   <div id="app">
+
+     <!-- //Mise en page imageFond -->
     <div class="imageFond">
       <div class="couleurFond">
+
+        <!-- //Boucle for pour les sujets des messages -->
         <h3
           v-for="forum in forums"
           :data-id="forum.id"
@@ -9,6 +13,7 @@
           v-html="forum.sujet"
         ></h3>
 
+        <!-- //Boucle for pour le contenue des messages -->
         <div class="sujet">
           <p
             class="largeurImages"
@@ -20,13 +25,19 @@
           {{ forum.contenu }}
         </div>
 
+        <!-- // Formulaire et boucle for pour afficher les avatars -->
         <form id="idForum" @submit="checkForm" action="#" method="post">
           <div class="info">
             
-            <img class="imagesAvatar" :src="'/avatars/' + `${forums.avatar}` + '.png'">
+            <p v-for="forum in forums" :data-id="forum.id" :key="forum.id">
+              <img
+                class="imagesAvatar"
+                :src="'/avatars/' + `${forum.avatar}` + '.png'"
+              />
+            </p>
 
-            <!-- // Nom d'utilisateur -->
-
+            
+            <!-- //Boucle for pour afficher les nom utilisateurs -->
             <p
               v-for="forum in forums"
               :data-id="forum.id"
@@ -35,9 +46,9 @@
             ></p>
             {{ forums.nom_utilisateur }}
 
-            <!-- //* Fin nom d'utilisateur *// -->
+           
 
-            <!-- // Nom dates -->
+            <!-- //Boucle for pour afficher la date des messages -->
 
             <p
               v-for="forum in forums"
@@ -47,14 +58,14 @@
             ></p>
             {{ forum.createdDate }}
 
-            <!-- //* Fin Dates *// -->
+            
+            <!-- //Bouton retour -->
             <div class="boutonsAlignement">
               <button class="couleurButton">
-                <a :href="`/profilUtilisateursForum`"
-                  >Retour</a
-                >
+                <a :href="`/profilUtilisateursForum`">Retour</a>
               </button>
 
+            <!-- //Bouton Répondre -->
               <button>
                 <a
                   :href="`/reponseTitreMessagesUtilisateursForum/${this.$route.params.id}`"
@@ -66,10 +77,12 @@
         </form>
       </div>
 
-      <!-- fin  -->
+      <!-- /// FIN ///  -->
 
-      <!-- discutions -->
 
+      <!-- //Réponse des messages du forum -->
+
+      <!-- // Boucle for pour lister les discussion -->
       <div class="discussion">
         <div
           v-for="discussion in discussions"
@@ -78,51 +91,43 @@
         >
           <div class="backJaune">
             <div class="fondBlanc">
-              <p> {{ discussion.contenu }}</p>
+
+              <!-- //Affichage du contenu discussion -->
+              <p v-html="`${discussion.contenu}`"></p>
             </div>
 
+            <!-- //Affichage du contenu avatar -->
             <form id="idForum2">
               <div class="info">
-                <img class="imagesAvatar" :src="'/avatars/' + `${discussion.avatar}` + '.png'">
+                <img
+                  class="imagesAvatar"
+                  :src="'/avatars/' + `${discussion.avatar}` + '.png'"
+                />
 
-                <!-- // Nom d'utilisateur -->
+                <!-- //Affichage des noms utilisateur -->
 
                 {{ discussion.nom_utilisateur }}
 
-                <!-- //* Fin nom d'utilisateur *// -->
-
-                <!-- // Nom dates -->
+                <!-- //Affichage des dates pour les messages -->
 
                 <p>
                   {{ discussion.createdDate }}
                 </p>
 
+                <!-- //Formulaire pour supprimer une discussion -->
                 <form
                   id="idForums"
                   @submit="checkFormSup"
                   action="#"
                   method="get"
                 >
+
+                <!-- //Bouton suprimmer -->
                   <p>
                     <input type="submit" value="Suprimmer" class="ButtonSup" />
                   </p>
                 </form>
 
-                <!-- //* Fin Dates *// -->
-                <!-- <div class="boutonsAlignement">
-              <button class="couleurButton">
-                <a :href="`http://localhost:8080/profilUtilisateursForum`"
-                  >Retour</a
-                >
-              </button>
-
-              <button>
-                <a
-                  :href="`http://localhost:8080/reponseTitreMessagesUtilisateursForum/${this.$route.params.id}`"
-                  >Répondre</a
-                >
-              </button>
-            </div> -->
               </div>
             </form>
           </div>
@@ -132,19 +137,24 @@
   </div>
 </template>
 
+
 <script>
+
+//Appel a Axios pour l'API
 import axios from "axios";
+
+//Appel a moment pour les dates
 import moment from "moment";
 
-// moment.utc('2019-11-03T05:00:00.000Z').format('MM/DD/YYYY')
-// new Date('2015-03-04T00:00:00.000Z'); //Valid Date
-// moment().format('MMMM Do YYYY, h:mm:ss a')
-
+//Moment format dates
 moment("2012-10-14", "YYYY-MM-DD", "fr", true);
 
 export default {
+
+  //Nom du components
   name: "titreMessageForum",
 
+  //Déclaration des variables 
   data() {
     return {
       nom_utilisateur: "",
@@ -162,77 +172,77 @@ export default {
     };
   },
 
-  components: {},
 
-  //Affiche tout les utilisateur
   mounted() {
-    console.log("Steve");
 
+    //Appel a l'API Back-End pour recuperer ID des messages
     axios
       .get(
         `/api/forums/${this.$route.params.id}`,
 
+        // Récupère le token
         {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           },
         }
       )
 
+      // Retourne une promesse nommée forums
       .then((response) => (this.forums = response.data));
 
+
+    //Appel a l'API Back-End pour recuperer ID des messages de discussion
     axios
       .get(
         `/api/discussions/${this.$route.params.id}`,
 
+        // Récupère le token
         {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           },
         }
       )
 
+      // Retourne une promesse nommée discussions
       .then((response) => (this.discussions = response.data.data));
-    console.log(sessionStorage.id);
+
   },
 
   methods: {
-    onFocusOut: function (e) {
-      this.content = e.target.innerHTML;
-    },
 
+    //Appel du formulaire checkFormSup pour supprimer une discussion
     checkFormSup: function (e) {
       axios.delete(
         `/api/discussions/`,
 
+        // Récupère le token
         {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + sessionStorage.getItem("token"),
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
           },
         }
       );
 
-      //   .then((response) => (this.avatars = response.data.data));
-      // console.log(sessionStorage.id);
-
+      //Previent du comportement par default
       e.preventDefault();
     },
   },
-
-  created() {
-    // let urlParams = new URLSearchParams(window.location.search);
-    // console.log(urlParams.has('yourParam')); // true
-    // console.log(urlParams.get('id')); // "MyParam"
-    // return new URL(location.href).searchParams.get("id")
-    // console.log();
-  },
 };
+
+
 </script>
 
+
 <style scoped>
+
+/* //////////////// media queries ///////////////
+////////////////// Portable ///////////////// */
+
 @media screen and (max-width: 640px) {
   .couleurFond {
     background-image: url("images/yellow.png");
@@ -285,7 +295,7 @@ export default {
     border: solid 1px black;
   }
   .sujet {
-    width: 92%;
+    width: 87.5%;
     height: 100%;
     background-color: rgb(255, 255, 255);
     text-align: left;
@@ -315,7 +325,8 @@ export default {
   .backJaune {
     border: solid 1px black;
     margin-top: 10px;
-    background-color: #ffeb01;
+    width: 102%;
+    background-color: #bbd9ff;
   }
   .fondBlanc {
     border: solid 1px black;
@@ -336,13 +347,12 @@ export default {
   .contenuInfos {
     margin-left: 20px;
   }
-   .imagesAvatar {
-    width: 9%;
-    height: 9%;
-    margin-right: 4px;
-    
-  }
+
 }
+
+/* //////////////// media queries ///////////////
+////////////////// PC et Tablet ///////////////// */
+
 
 @media screen and (min-width: 641px) {
   .couleurFond {
@@ -428,7 +438,7 @@ export default {
   .backJaune {
     border: solid 1px black;
     margin-top: 10px;
-    background-color: #ffeb01;
+    background-color: #bbd9ff;
   }
   .fondBlanc {
     border: solid 1px black;
@@ -449,11 +459,6 @@ export default {
   .contenuInfos {
     margin-left: 20px;
   }
-   .imagesAvatar {
-    width: 7%;
-    height: 7%;
-    margin-right: 4px;
-    
-  }
+
 }
 </style>
