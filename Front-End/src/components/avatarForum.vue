@@ -61,13 +61,6 @@ export default {
     return {
       avatars: [],
       avatar: [],
-      sujet: "",
-      contenu: "",
-      nom_utilisateur: null,
-      id_discussion: null,
-      likes: null,
-      errors: [],
-      content: null,
       avatar_id: null,
     };
   },

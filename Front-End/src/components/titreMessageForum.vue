@@ -15,7 +15,7 @@
       </button>
 
       <!-- //Boucle for pour les messages du forum -->
-      <p v-for="forum in forums.reverse().slice(0, 50)" :key="forum.id">
+      <p v-for="forum in forums.reverse().slice(0, 50)" :key="forum.id" :data-id="avatar_id">
         
         <!-- //Affichage des titres -->
         <span class="titre"
@@ -60,6 +60,8 @@
               <input type="submit" value="Suprimmer" class="ButtonSup" />
             </p>
 
+            
+
           </form>
 
         </span>
@@ -100,12 +102,8 @@ export default {
       forum: [],
       user: [],
       users: [],
-      counter: 1,
-      current: 30,
-      total: 0,
       message: [],
-      length: "",
-      id: "",
+      forum_id: null,
     };
   },
 
@@ -214,7 +212,9 @@ export default {
       axios.delete(
         `/api/forums/`,
 
-        // Récupère le token
+     
+
+       // Récupère le token
         {
           headers: {
             "Content-Type": "application/json",

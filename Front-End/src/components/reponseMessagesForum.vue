@@ -28,14 +28,17 @@
         <!-- // Formulaire et boucle for pour afficher les avatars -->
         <form id="idForum" @submit="checkForm" action="#" method="post">
           <div class="info">
-            
-            <p v-for="forum in forums" :data-id="forum.id" :key="forum.id">
+
+           
+            <p v-for="forum in forums" :data-id="forum.id" :key="forum.avatar">
+
               <img
                 class="imagesAvatar"
                 :src="'/avatars/' + `${forum.avatar}` + '.png'"
               />
-            </p>
 
+            </p>
+            
             
             <!-- //Boucle for pour afficher les nom utilisateurs -->
             <p
@@ -161,10 +164,7 @@ export default {
       email: "",
       mot_de_passe: "",
       avatar: 1,
-      show: false,
-      mesDonnees: "",
       forums: [],
-      counter: 5,
       forum: [],
       content: null,
       discussions: [],

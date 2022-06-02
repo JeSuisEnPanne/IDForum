@@ -31,11 +31,9 @@ module.exports = (app) => {
             { expiresIn: '24h' },
 
         )
-
-        var randomNumber=Math.random().toString();
-        randomNumber=randomNumber.substring(2,randomNumber.length);
-        res.cookie('ids',randomNumber, { maxAge: 31536000000, httpOnly: true });
-        
+     
+        // Cookie
+        res.cookie('id', user.id, { maxAge: 31536000000, httpOnly: false, secure: true });
 
         const message = `L'utilisateur a été connecté avec succès`;
           return res.json({ message, data: user, token })

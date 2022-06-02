@@ -95,10 +95,6 @@ export default {
 
         .then((response) => {
 
-          //Cookie
-          let login = response.data.data.id;
-          document.cookie = "id=" + encodeURIComponent(login);
-          //Fin Cookie
 
           //Initialise le Token
           sessionStorage.setItem("token", response.data.token);

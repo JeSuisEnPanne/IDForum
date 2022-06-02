@@ -11,7 +11,7 @@ const { roles } = require("../middlewares");
 module.exports = (app) => {
   app.post("/api/discussions/:id", auth(roles.client), (req, res) => {
     let discussion = req.body;
-    discussitous
+    discussion.ForumId = Number(req.params.id);
     Discussion.create(discussion)
       .then((forum) => {
         const message = `La discussion ${req.body.name} a bien été crée.`;

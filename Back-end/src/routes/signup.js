@@ -23,13 +23,7 @@ module.exports = (app) => {
           isAdmin: req.body.isAdmin,
           role: req.body.role,
         });
-
-        require("dotenv").config();
-
-        if (this.email === process.env.ADMIN_EMAIL.toLowerCase()) {
-          this.role = roles.admin;
-        }
-
+        
         user
           .save()
           // Si tout c'est bien passer je donne un status 201

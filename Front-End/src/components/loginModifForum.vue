@@ -63,10 +63,8 @@ export default {
     return {
       profils: [],
       profil: [],
-      stop: null,
       avatar: [],
       avatars: [],
-      authenticated: false,
       image: "../assets/avatars/",
       png: ".png",
     };
@@ -126,12 +124,14 @@ export default {
       .then((response) => {
         this.profils = response.data.data.avatar_id;
       });
+   
   },
 
 
   ////////////// Supression compte ////////////////////
 
   methods: {
+
 
     //Appel du formulaire checkForm
     checkForm: function () {
@@ -216,6 +216,11 @@ function lectureCookie(id) {
       ///////////////////// FIN ////////////////////////////
       /////////////////////////////////////////////////////
 
+
+// let allcookies = document.cookie;
+//     alert(allcookies);
+
+    
 </script>
 
 <style scoped>

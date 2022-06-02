@@ -95,11 +95,8 @@ export default {
       contenu: "",
       nom_utilisateur: "",
       id_discussion: null,
-      likes: null,
       avatar: null,
-      errors: [],
       content: null,
-      foobar: null,
       date: moment().format("YYYY-MM-DD HH:mm:ss"),
   
     };
