@@ -49,7 +49,6 @@ const initDb = () => {
   //       data: forum.data,
   //       nom_utilisateur: forum.nom_utilisateur,
   //       id_discussion: forum.id_discussion,
-  //       likes: forum.likes,
   //       avatar: forum.avatar,
   //       createdDate: forum.createdDate,
         

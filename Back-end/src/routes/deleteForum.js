@@ -8,7 +8,7 @@ const { auth } = require("../auth/auth");
 const { roles } = require("../middlewares");
 
 module.exports = (app) => {
-  app.delete("/api/forums/:id", auth(roles.client), (req, res) => {
+  app.delete("/api/forums/:id", auth(roles.admin), (req, res) => {
     Forum.findByPk(req.params.id)
       .then((forum) => {
         if (forum == null) {

@@ -15,7 +15,7 @@
       </button>
 
       <!-- //Boucle for pour les messages du forum -->
-      <p v-for="forum in forums.reverse().slice(0, 50)" :key="forum.id" :data-id="avatar_id">
+      <p v-for="forum in forums.reverse().slice(0, 50)" :key="forum.id" :data-id="forum.id">
         
         <!-- //Affichage des titres -->
         <span class="titre"
@@ -196,7 +196,6 @@ export default {
       // Retourne une promesse nommée response
       .then((response) => {
         this.message = response.data.data;
-        console.log(response.data.data);
       });
   },
 

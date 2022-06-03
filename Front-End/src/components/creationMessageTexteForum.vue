@@ -205,7 +205,6 @@ function lectureCookie(id)
           data: "null",
           nom_utilisateur: this.user.pseudo,
           id_discussion: "null",
-          likes: "null",
           avatar: this.user.avatar_id,
           createdDate: this.date.toString()
         },
