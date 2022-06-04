@@ -11,7 +11,7 @@ module.exports = (app) => {
   app.get("/api/forums/:id", auth(roles.client), (req, res) => {
     Forum.findByPk(req.params.id).then((forum) => {
       const message = "Un méssage a bien été trouvé.";
-      res.json({ message, data: forum });
+      res.json({ message, data: forum.dataValues });
     });
   });
 };

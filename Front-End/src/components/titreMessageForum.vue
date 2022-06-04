@@ -50,7 +50,7 @@
           <!-- //Supression des messages -->
           <form
             id="checkFormSuprim"
-            @submit="checkFormSuprim"
+            @submit="checkFormSuprim(forum.id)"
             action="/profilUtilisateursForum"
             method="get"
           >
@@ -205,11 +205,12 @@ export default {
   methods: {
 
     //Appel du formulaire checkFormSuprim pour suprimmer un message
-    checkFormSuprim: function () {
+    checkFormSuprim: function (id) {
 
       //Appel a l'API Back-End
       axios.delete(
-        `/api/forums/`,
+        `/api/forums/${id}`,
+        
 
      
 

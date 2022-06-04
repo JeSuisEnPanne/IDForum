@@ -7,9 +7,6 @@
 
         <!-- //Boucle for pour les sujets des messages -->
         <h3
-          v-for="forum in forums"
-          :data-id="forum.id"
-          :key="forum.id"
           v-html="forum.sujet"
         ></h3>
 
@@ -17,12 +14,8 @@
         <div class="sujet">
           <p
             class="largeurImages"
-            v-for="forum in forums"
-            :data-id="forum.id"
-            :key="forum.id"
             v-html="forum.contenu"
           ></p>
-          {{ forum.contenu }}
         </div>
 
         <!-- // Formulaire et boucle for pour afficher les avatars -->
@@ -30,7 +23,7 @@
           <div class="info">
 
            
-            <p v-for="forum in forums" :data-id="forum.id" :key="forum.avatar">
+            <p>
 
               <img
                 class="imagesAvatar"
@@ -42,24 +35,18 @@
             
             <!-- //Boucle for pour afficher les nom utilisateurs -->
             <p
-              v-for="forum in forums"
-              :data-id="forum.id"
-              :key="forum.id"
               v-html="forum.nom_utilisateur"
             ></p>
-            {{ forums.nom_utilisateur }}
+
 
            
 
             <!-- //Boucle for pour afficher la date des messages -->
 
             <p
-              v-for="forum in forums"
-              :data-id="forum.id"
-              :key="forum.id"
               v-html="forum.createdDate"
             ></p>
-            {{ forum.createdDate }}
+
 
             
             <!-- //Bouton retour -->
@@ -120,7 +107,7 @@
                 <!-- //Formulaire pour supprimer une discussion -->
                 <form
                   id="idForums"
-                  @submit="checkFormSup"
+                  @submit="checkFormSup(discussion.id)"
                   action="#"
                   method="get"
                 >
@@ -190,7 +177,9 @@ export default {
       )
 
       // Retourne une promesse nommée forums
-      .then((response) => (this.forums = response.data));
+      .then((response) => {
+        this.forum = response.data.data
+      });
 
 
     //Appel a l'API Back-End pour recuperer ID des messages de discussion
@@ -215,9 +204,9 @@ export default {
   methods: {
 
     //Appel du formulaire checkFormSup pour supprimer une discussion
-    checkFormSup: function (e) {
+    checkFormSup: function (id) {
       axios.delete(
-        `/api/discussions/`,
+        `/api/discussions/${id}`,
 
         // Récupère le token
         {
@@ -229,7 +218,7 @@ export default {
       );
 
       //Previent du comportement par default
-      e.preventDefault();
+      // e.preventDefault();
     },
   },
 };
