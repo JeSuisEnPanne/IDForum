@@ -102,11 +102,6 @@ import Editor from "@tinymce/tinymce-vue";
 //Appel a moment pour les dates
 import moment from "moment";
 
-// Format Date avec moment
-var date = moment().format('YYYY-MM-DD HH:mm:ss');
-console.log(date.toString());
-
-
 
 export default {
 

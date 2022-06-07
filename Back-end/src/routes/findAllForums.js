@@ -9,17 +9,10 @@ const { roles } = require("../middlewares")
 const { Discussion } = require('../db/sequelize')
 const sequelize = require('../db/sequelize')
 
-//Token
-// const auth = require('../auth/auth')
-// app.get('/api/forums', auth, (req, res) => {
   
 module.exports = (app) => {
   app.get('/api/forums', auth(roles.client), (req, res) => {
-    // Discussion.query("SELECT ForumId, COUNT(ForumId) FROM `Discussions` GROUP BY ForumId").then(data => {
-    //   console.log(data);
-    // })
-    // const [totalDiscussion, metadata] = await sequelize.query("SELECT ForumId, COUNT(ForumId) FROM `Discussions` GROUP BY ForumId");
-    const limit = parseInt(req.query.limit) || 3
+    const limit = parseInt(req.query.limit) || 50
     Forum.findAndCountAll({
       limit: limit,
     })
