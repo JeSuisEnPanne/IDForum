@@ -9,6 +9,7 @@ Le fichier Readme
 Un dossier Back-End
 Un dossier Front-End
 
+
 /////////////////////////////////////////////////////////
 
 Avant Apropos :
@@ -40,7 +41,7 @@ Sécriter et mot de passe de la Base De Donner :
 par défaut le serveur et configurer avec le nom utilisateur : root et sans mot de passe
 configuration par Défaut de Phpmyadmin.
 
-Vous pouvez (facultatif) créer un nom d'utilisateur et mot de passe d'un nouveau compte utilisateur sur Phpmyadmin et l'utiliser avec le serveur back-end'
+Vous pouvez (Recommander) créer un nom d'utilisateur et mot de passe d'un nouveau compte utilisateur sur Phpmyadmin et l'utiliser avec le serveur back-end'
 
 
 Si vous voulez utiliser un autre compte utilisateur avec un mot de passe coté Back-End.
@@ -88,7 +89,6 @@ Pour lancer le site tapé dans votre navigateur à la barre d'adresse : http://l
 ///////////////////////////////////////////////////////
 
 Un fichier texte avec le compte Modérateur pour le site est donné dans le fichier : Compte-Moderateur.txt
-
 
 
 
