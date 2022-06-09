@@ -49,7 +49,7 @@
 
             <!-- //Bouton Suprimmer -->
             <p>
-              <input type="submit" value="Suprimmer" class="ButtonSup" />
+              <input v-show="role == 'ADMIN'" type="submit" value="Suprimmer" class="ButtonSup" />
             </p>
 
             
@@ -89,11 +89,31 @@ export default {
       users: [],
       message: [],
       forum_id: null,
+      role: [],
     };
   },
 
 
   mounted() {
+
+    axios
+      .get(
+        `/api/user/${lectureCookie("id")}`,
+
+        // Récupère le token
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+          },
+        },
+       
+      )
+
+      // Retourne une promesse nommée user
+      .then((response) => (this.role = response.data.data.role));
+      
+
 
     //Appel a l'API Back-End pour avoir ID des utilisateurs
     axios
@@ -158,11 +178,13 @@ export default {
         }
       )
 
+
       // Retourne une promesse nommée forums
       .then((response) => {
         this.forums = response.data.data;
       });
 
+       
 
     //Appel a l'API Back-End pour lister le nombre de reponses des messages
     axios
@@ -207,10 +229,15 @@ export default {
           },
         }
       );
+          
     },
+
 
   },
 };
+   
+
+
 </script>
 
 <style scoped>

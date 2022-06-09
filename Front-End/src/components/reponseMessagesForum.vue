@@ -113,8 +113,11 @@
                 >
 
                 <!-- //Bouton suprimmer -->
+
+
+
                   <p>
-                    <input type="submit" value="Suprimmer" class="ButtonSup" />
+                    <input v-show="role == 'ADMIN'" type="submit" value="Suprimmer" class="ButtonSup"/>
                   </p>
                 </form>
 
@@ -156,11 +159,60 @@ export default {
       content: null,
       discussions: [],
       discussion: [],
+      role: [],
     };
   },
 
 
   mounted() {
+
+    //Appel a l'API Back-End recupere ID de l'utilisateur dans le middleware get user
+    axios
+      .get(
+        `/api/user/${lectureCookie("id")}`,
+
+        // Récupère le token
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + sessionStorage.getItem("token"),
+          },
+        },
+      )
+       
+
+      // Retourne une promesse nommée user
+      .then((response) => (this.role = response.data.data.role));
+
+    
+
+      /////////////////// Cookie /////////////////////
+      ////////////////////////////////////////////////
+
+    /* Définition de la fonction JavaScript de lecture d'un cookie */
+    function lectureCookie(id) {
+      /* Test de présence du cookie */
+      if (document.cookie.length == 0) {
+        /* Valeur de retour null */
+        return null;
+      } else {
+        /* Mise en tableau tabElements des éléments du cookie */
+        /* NB : On se base sur le séparateur point-virgule */
+        var tabElements = document.cookie.split(";");
+        /* Recherche du = séparant le nom de l'élément 
+        de la valeur de l'élément pour le 1er élément (n° 0)*/
+        var positionEgal = tabElements[0].indexOf("=", 0);
+        var nomElement = tabElements[0].substring(0, positionEgal);
+        var valeurElement = tabElements[0].substring(positionEgal + 1);
+        if (nomElement == id) {
+          return unescape(valeurElement);
+        }
+
+        return null;
+      }
+    }
+      ///////////////////// FIN ////////////////////////////
+      /////////////////////////////////////////////////////
 
     //Appel a l'API Back-End pour recuperer ID des messages
     axios

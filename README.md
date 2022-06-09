@@ -1,4 +1,4 @@
-Intalation du projet 7 : Groupomania
+Installation du projet 7 : Groupomania
 
 Dossier Principal :
 
